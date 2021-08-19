@@ -10,13 +10,6 @@ public class Subject extends Student{
     public Subject() {
     }
 
-//    public Subject(double ktBaiCu, double kt15p, double kt45p, double kthk) {
-//        this.ktBaiCu = ktBaiCu;
-//        this.kt15p = kt15p;
-//        this.kt45p = kt45p;
-//        this.kthk = kthk;
-//    }
-
     public Subject(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk) {
         super(stt, name);
         this.ktBaiCu = ktBaiCu;
@@ -35,9 +28,9 @@ public class Subject extends Student{
         this.gpa = gpa;
     }
 
-    public Subject(int stt, String name) {
-        super(stt, name);
-    }
+//    public Subject(int stt, String name) {
+//        super(stt, name);
+//    }
 
     public double getKtBaiCu() {
         return ktBaiCu;

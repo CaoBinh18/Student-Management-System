@@ -12,25 +12,23 @@ public class ChemistryWRFile {
 
         try {
             File infile = new File("src\\Data\\Chemistrys.csv");
-            if(!infile.exists()) {
-                infile.createNewFile();
-            } else {
-                FileWriter fw = new FileWriter(infile);
-                BufferedWriter bw = new BufferedWriter(fw);
 
-                for (Subject chemistry : chemistryList) {
-                    bw.write(chemistry.getStt() +
-                            ", " + chemistry.getName() +
-                            ", " + chemistry.getKtBaiCu() +
-                            ", " + chemistry.getKt15p() +
-                            ", " + chemistry.getKt45p() +
-                            ", " + chemistry.getKthk() +
-                            ", " + chemistry.getGpa() +
-                            "\n");
-                }
-                bw.close();
-                fw.close();
+            FileWriter fw = new FileWriter(infile);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (Subject chemistry : chemistryList) {
+                bw.write(chemistry.getStt() +
+                        ", " + chemistry.getName() +
+                        ", " + chemistry.getKtBaiCu() +
+                        ", " + chemistry.getKt15p() +
+                        ", " + chemistry.getKt45p() +
+                        ", " + chemistry.getKthk() +
+                        ", " + chemistry.getGpa() +
+                        "\n");
             }
+            bw.close();
+            fw.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,6 +38,9 @@ public class ChemistryWRFile {
         List<Subject> chemistryList = new ArrayList<>();
         try {
             File infile = new File("src\\Data\\Chemistrys.csv");
+            if (!infile.exists()) {
+                writeFileChemistry(chemistryList);
+            }
             FileReader fr = new FileReader(infile);
             BufferedReader br = new BufferedReader(fr);
 

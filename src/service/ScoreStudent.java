@@ -6,6 +6,7 @@ import WriteReadFile.StudentWRFile;
 import model.*;
 import model.Subject;
 
+import java.lang.Math;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,24 +23,31 @@ public class ScoreStudent {
         List<Student> studentList = StudentManager.studentsList;
 
         for (int i = 0; i < studentList.size(); i++) {
-                int stt = (mathList.size() > 0) ? (mathList.size() + 1) : 1;
-                if (studentList.get(i).getStt() == stt) {
-                    int stt1 = stt;
-                    System.out.println("Stt " + stt1);
-                    String name = studentList.get(i).getName();
-                    System.out.println("Tên " + name);
+            int stt = (mathList.size() > 0) ? (mathList.size() + 1) : 1;
+            if (studentList.get(i).getStt() == stt) {
+                int stt1 = stt;
+                System.out.println("Stt " + stt1);
+                String name = studentList.get(i).getName();
+                System.out.println("Tên " + name);
 
-                    double ktBaiCu = inputKtBaiCu();
-                    double kt15p = inputKt15p();
-                    double kt45p = inputKt45p();
-                    double kthk = inputKthk();
-                    double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
-                    Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
-                    mathList.add(math);
-                    MathWRFile.writeFileMath(mathList);
+                double ktBaiCu = inputKtBaiCu();
+                double kt15p = inputKt15p();
+                double kt45p = inputKt45p();
+                double kthk = inputKthk();
+                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                mathList.add(math);
+                MathWRFile.writeFileMath(mathList);
+
+                for (Student student : studentList) {
+                    if (student.getStt() == stt1) {
+                        student.setMathScore(gpa);
+                    }
                 }
+                StudentWRFile.writeFile(studentList);
             }
         }
+    }
 
 
     public static void editMathScore() {
@@ -94,10 +102,10 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                double gpa = ((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7);
                 Subject chemistry = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 chemistryList.add(chemistry);
-               ChemistryWRFile.writeFileChemistry(chemistryList);
+                ChemistryWRFile.writeFileChemistry(chemistryList);
             }
         }
     }
@@ -107,7 +115,7 @@ public class ScoreStudent {
         System.out.print("Nhập điểm kiểm tra bài cũ: ");
         while (true) {
             try {
-                ktBaiCu = Integer.parseInt(sc.nextLine());
+                ktBaiCu = Double.parseDouble(sc.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
@@ -122,7 +130,7 @@ public class ScoreStudent {
         System.out.print("Nhập điểm kiểm tra 15 phút: ");
         while (true) {
             try {
-                kt15p = Integer.parseInt(sc.nextLine());
+                kt15p = Double.parseDouble(sc.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
@@ -137,7 +145,7 @@ public class ScoreStudent {
         System.out.print("Nhập điểm kiểm tra 45 phút: ");
         while (true) {
             try {
-                kt45p = Integer.parseInt(sc.nextLine());
+                kt45p = Double.parseDouble(sc.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
@@ -152,7 +160,7 @@ public class ScoreStudent {
         System.out.print("Nhập điểm kiểm tra học kì: ");
         while (true) {
             try {
-                kthk = Integer.parseInt(sc.nextLine());
+                kthk = Double.parseDouble(sc.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");

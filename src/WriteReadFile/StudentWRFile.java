@@ -21,9 +21,11 @@ public class StudentWRFile {
                         ", " + student.getName() +
                         ", " + student.getBirthday() +
                         ", " + student.getAddress() +
-                        ", " + student.getPhysicScore() +
-                        ", " + student.getChemistryScore() +
                         ", " + student.getMathScore() +
+                        ", " + student.getChemistryScore() +
+                        ", " + student.getBiologyScore() +
+                        ", " + student.getPhysicScore() +
+                        ", " + student.getGpa() +
                         "\n");
             }
             bw.close();
@@ -38,6 +40,10 @@ public class StudentWRFile {
         List<Student> studentList = new ArrayList<>();
         try {
             File infile = new File("src\\Data\\student.csv");
+            if (!infile.exists()) {
+                writeFile(studentList);
+            }
+
             FileReader fr = new FileReader(infile);
             BufferedReader br = new BufferedReader(fr);
 
@@ -50,9 +56,11 @@ public class StudentWRFile {
                 student1.setName(student[1]);
                 student1.setBirthday(student[2]);
                 student1.setAddress(student[3]);
-                student1.setPhysicScore(Double.parseDouble(student[4]));
+                student1.setMathScore(Double.parseDouble(student[4]));
                 student1.setChemistryScore(Double.parseDouble(student[5]));
-                student1.setMathScore(Double.parseDouble(student[6]));
+                student1.setBiologyScore(Double.parseDouble(student[6]));
+                student1.setPhysicScore(Double.parseDouble(student[7]));
+                student1.setGpa(Double.parseDouble(student[8]));
                 studentList.add(student1);
 
             }

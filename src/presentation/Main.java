@@ -118,14 +118,15 @@ public class Main {
     }
 
     static void showMenu() {
-        System.out.println("============MENU============");
-        System.out.println("1. Xem danh sách học viên.");
-        System.out.println("2. Thêm học viên.");
-        System.out.println("3. Sửa thông tin học viên.");
-        System.out.println("4. Xóa học viên.");
-        System.out.println("5. Nhập điểm học viên.");
-        System.out.println("6. Sửa điểm học viên.");
-        System.out.println("7. Xếp loại học viên.");
+        System.out.println("\n============MENU============");
+        System.out.println("1. Xem danh sách học viên");
+        System.out.println("2. Thêm học viên");
+        System.out.println("3. Sửa thông tin học viên");
+        System.out.println("4. Xóa học viên");
+        System.out.println("5. Nhập điểm học viên");
+        System.out.println("6. Sửa điểm học viên");
+        System.out.println("7. Xếp loại học viên");
+        System.out.println("8. Bảng điểm môn học");
         System.out.println("0. Thoát.");
         System.out.println("=============================");
         System.out.print("Nhập lựa chọn: ");
@@ -133,24 +134,24 @@ public class Main {
     }
 
     static void menuScore() {
-        System.out.println("==========Nhập điểm các môn học==========");
+        System.out.println("\n=====Nhập điểm các môn học======");
         System.out.println("1. Nhập điểm Toán");
         System.out.println("2. Nhập điểm Hóa");
         System.out.println("3. Nhập điểm Sinh");
         System.out.println("4. Nhập điểm Lý");
         System.out.println("0. Quay lại Menu");
-        System.out.println("=======================");
+        System.out.println("================================");
         System.out.print("Nhập lựa chọn: ");
     }
 
     static void showScore() {
-        System.out.println("Hiển thị điểm thành phần môn học");
+        System.out.println("\n======Hiển thị điểm thành phần môn học======");
         System.out.println("1. Bảng điểm Toán");
         System.out.println("2. Bảng điểm Hóa");
         System.out.println("3. Bảng điểm Sinh");
         System.out.println("4. Bảng điểm Lý");
         System.out.println("0. Quay lại Menu");
-        System.out.println("=============================");
+        System.out.println("==================================");
         System.out.print("Nhập lựa chọn: ");
     }
 }
