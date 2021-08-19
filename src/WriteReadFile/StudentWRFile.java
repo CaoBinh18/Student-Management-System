@@ -9,8 +9,6 @@ import java.util.List;
 
 public class StudentWRFile {
 
-//    private static final ArrayList<modal.Student> studentList = new ArrayList<>();
-
     public static void writeFile(List<Student> studentList) {
 
         try {
