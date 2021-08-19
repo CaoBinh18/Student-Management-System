@@ -69,7 +69,7 @@ public class Subject extends Student{
     }
 
     public void setGpa(double gpa) {
-        this.gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+        this.gpa = gpa;
     }
 
     public void display() {
@@ -77,13 +77,11 @@ public class Subject extends Student{
 
         System.out.printf("%5d | ", subject.getStt());
         System.out.printf("%20s | ", subject.getName());
-        System.out.printf("%10f | ", subject.getKtBaiCu());
-        System.out.printf("%10f | ", subject.getKt15p());
-        System.out.printf("%10f | ", subject.getKt45p());
-        System.out.printf("%10f | ", subject.getKthk());
-        System.out.printf("%10f%n", subject.getGpa());
+        System.out.printf("%10.2f | ", subject.getKtBaiCu());
+        System.out.printf("%10.2f | ", subject.getKt15p());
+        System.out.printf("%10.2f | ", subject.getKt45p());
+        System.out.printf("%10.2f | ", subject.getKthk());
+        System.out.printf("%10.2f%n", subject.getGpa());
 
     }
-
-
 }

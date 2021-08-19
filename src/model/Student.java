@@ -5,7 +5,7 @@ public class Student {
     private String name;
     private String birthday;
     private String address;
-    private double physicScore, chemistryScore, mathScore, biologyScore, gpa;
+    private double physicScore, chemistryScore, mathScore, biologyScore, gpa1;
 
     public Student() {
     }
@@ -22,16 +22,16 @@ public class Student {
         this.name = name;
     }
 
-    public Student(int stt, String name, String birthday, String address, double physicScore, double chemistryScore, double mathScore, double biologyScore, double gpa) {
+    public Student(int stt, String name, String birthday, String address, double mathScore, double chemistryScore, double biologyScore, double physicScore, double gpa1) {
         this.stt = stt;
         this.name = name;
         this.birthday = birthday;
         this.address = address;
-        this.physicScore = physicScore;
+        this.mathScore = mathScore;
         this.chemistryScore = chemistryScore;
         this.biologyScore = biologyScore;
-        this.mathScore = mathScore;
-        this.gpa = gpa;
+        this.physicScore = physicScore;
+        this.gpa1 = gpa1;
     }
 
 
@@ -99,23 +99,24 @@ public class Student {
         this.biologyScore = biologyScore;
     }
 
-    public double getGpa() {
-        return gpa;
+    public double getGpa1() {
+        return gpa1 = (mathScore + chemistryScore + biologyScore + physicScore) / 4;
     }
 
-    public void setGpa(double gpa) {
-
+    public void setGpa1(double gpa1) {
+        this.gpa1 = gpa1;
     }
 
     public void displayStudent() {
-        Student student = new Student(stt, name, birthday, address, mathScore, chemistryScore, biologyScore, physicScore, gpa);
+        Student student = new Student(stt, name, birthday, address, mathScore, chemistryScore, biologyScore, physicScore, gpa1);
         System.out.format("%5d | ", student.getStt());
         System.out.format("%20s | ", student.getName());
         System.out.format("%10s | ", student.getBirthday());
         System.out.format("%20s | ", student.getAddress());
-        System.out.format("%10f | ", student.getMathScore());
-        System.out.format("%10f | ", student.getChemistryScore());
-        System.out.format("%10f | ", student.getBiologyScore());
-        System.out.format("%10f%n", student.getMathScore());
+        System.out.format("%10.2f | ", student.getMathScore());
+        System.out.format("%10.2f | ", student.getChemistryScore());
+        System.out.format("%10.2f | ", student.getBiologyScore());
+        System.out.format("%10.2f | ", student.getPhysicScore());
+        System.out.printf("%10.2f%n", student.getGpa1());
     }
 }

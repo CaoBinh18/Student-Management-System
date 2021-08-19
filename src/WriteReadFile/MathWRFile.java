@@ -53,9 +53,7 @@ public class MathWRFile {
                 math1.setKthk(Double.parseDouble(math[5]));
                 math1.setGpa(Double.parseDouble(math[6]));
                 mathList.add(math1);
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

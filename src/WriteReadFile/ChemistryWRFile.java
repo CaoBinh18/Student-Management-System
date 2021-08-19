@@ -1,6 +1,5 @@
 package WriteReadFile;
 
-import model.Chemistry;
 import model.Subject;
 
 import java.io.*;
@@ -9,10 +8,8 @@ import java.util.List;
 
 public class ChemistryWRFile {
     public static void writeFileChemistry(List<Subject> chemistryList) {
-
         try {
             File infile = new File("src\\Data\\Chemistrys.csv");
-
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
 
@@ -28,7 +25,6 @@ public class ChemistryWRFile {
             }
             bw.close();
             fw.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +53,6 @@ public class ChemistryWRFile {
                 chemistry1.setKthk(Double.parseDouble(chemistry[5]));
                 chemistry1.setGpa(Double.parseDouble(chemistry[6]));
                 chemistryList.add(chemistry1);
-
             }
         } catch (IOException e) {
             e.printStackTrace();

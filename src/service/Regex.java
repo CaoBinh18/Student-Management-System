@@ -11,4 +11,17 @@ public class Regex {
         return !matcher.matches();
     }
 
+    public static boolean checkSize(String str) {
+        String regex = "^\\[1-10]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+
+    public static boolean checkSroceStudent(String str) {
+        String regex = "^\\d\\.\\d|[10\\.0]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
 }

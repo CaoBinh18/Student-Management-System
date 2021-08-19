@@ -6,7 +6,6 @@ import WriteReadFile.StudentWRFile;
 import model.*;
 import model.Subject;
 
-import java.lang.Math;
 import java.util.List;
 import java.util.Scanner;
 
@@ -81,11 +80,6 @@ public class ScoreStudent {
         MathWRFile.writeFileMath(mathList);
     }
 
-//    public static void updateName() {
-//        mathList = MathWRFile.readFileMath();
-//
-//    }
-
     public static void addChemistryScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
         chemistryList = ChemistryWRFile.readFileChemistry();
@@ -102,10 +96,16 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = ((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7);
+                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
                 Subject chemistry = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 chemistryList.add(chemistry);
                 ChemistryWRFile.writeFileChemistry(chemistryList);
+                for (Student student : studentList) {
+                    if (student.getStt() == stt1) {
+                        student.setChemistryScore(gpa);
+                    }
+                }
+                StudentWRFile.writeFile(studentList);
             }
         }
     }

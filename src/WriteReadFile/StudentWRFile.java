@@ -25,7 +25,7 @@ public class StudentWRFile {
                         ", " + student.getChemistryScore() +
                         ", " + student.getBiologyScore() +
                         ", " + student.getPhysicScore() +
-                        ", " + student.getGpa() +
+                        ", " + student.getGpa1() +
                         "\n");
             }
             bw.close();
@@ -60,7 +60,7 @@ public class StudentWRFile {
                 student1.setChemistryScore(Double.parseDouble(student[5]));
                 student1.setBiologyScore(Double.parseDouble(student[6]));
                 student1.setPhysicScore(Double.parseDouble(student[7]));
-                student1.setGpa(Double.parseDouble(student[8]));
+                student1.setGpa1(Double.parseDouble(student[8]));
                 studentList.add(student1);
 
             }

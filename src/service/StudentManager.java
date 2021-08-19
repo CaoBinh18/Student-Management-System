@@ -20,7 +20,8 @@ public class StudentManager {
 
     public static void show() {
         studentsList = StudentWRFile.readFile();
-        System.out.format("%5s | %20s | %10s | %20s | %10s | %10s | %10s | %10s | %10s%n", "Stt", "Tên", "Ngày sinh", "Địa chỉ", "Toán", "Hóa", "Sinh", "Lý", "Điểm trung bình");
+        System.out.format("%5s | %20s | %10s | %20s | %10s | %10s | %10s | %10s | %10s%n",
+                "Stt", "Tên", "Ngày sinh", "Địa chỉ", "Toán", "Hóa", "Sinh", "Lý", "Điểm trung bình");
         for (Student student : studentsList) {
             student.displayStudent();
         }
@@ -28,11 +29,11 @@ public class StudentManager {
 
     public static void add() {
         studentsList = StudentWRFile.readFile();
-        System.out.print("Số học sinh cần thêm: ");
+        System.out.print("Số học sinh cần thêm (1 đến 10): ");
         try {
-            int n = Integer.parseInt(sc.nextLine());
+            int size = Integer.parseInt(sc.nextLine());
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < size; i++) {
                 int stt = (studentsList.size() > 0) ? (studentsList.size() + 1) : 1;
                 System.out.println("Stt: " + stt);
                 System.out.println("Tên học sinh thứ: " + stt);
@@ -49,7 +50,6 @@ public class StudentManager {
         } catch (NumberFormatException e) {
             System.out.println("Nhập sai. Vui lòng nhập lại theo Menu!!");
         }
-        StudentWRFile.writeFile(studentsList);
     }
 
     public static void edit() {
@@ -129,7 +129,7 @@ public class StudentManager {
     }
 
     public static String inputName() {
-        String name = null;
+        String name;
         System.out.print("Tên học sinh: ");
         while (true) {
             try {
@@ -154,7 +154,7 @@ public class StudentManager {
     }
 
     public static String inputAddress() {
-        String address = null;
+        String address;
         System.out.print("Địa chỉ: ");
         while (true) {
             try {
