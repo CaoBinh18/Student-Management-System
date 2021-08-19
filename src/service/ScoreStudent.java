@@ -1,34 +1,48 @@
 package service;
 
-import data.ChemistryWRFile;
-import data.MathWRFile;
-import data.StudentWRFile;
+import WriteReadFile.ChemistryWRFile;
+import WriteReadFile.MathWRFile;
+import WriteReadFile.StudentWRFile;
 import model.*;
-import model.Math;
+import model.Subject;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ScoreStudent {
     private static final Scanner sc = new Scanner(System.in);
-    static List<Math> mathList;
-    static List<Chemistry> chemistryList;
+    static List<Subject> mathList;
+    static List<Subject> chemistryList;
     static List<Biology> biologyList;
     static List<Physic> physicList;
 
-//    public static void showScore() {
-//        mathList = MathWRFile.readFileScore();
-//        StudentManager.studentsList = StudentWRFile.readFile();
-//        List<Student> studentList = StudentManager.studentsList;
-//        System.out.printf("%15s | %10s | %10s | %10s | %10s%n", "Môn Học", "KtBaiCu", "Kt15p", "Kt45p", "Kthk");
-//        for (Math math : mathList) {
-//            math.displayScore();
-//        }
-//    }
+    public static void addMathScore() {
+        StudentManager.studentsList = StudentWRFile.readFile();
+        mathList = MathWRFile.readFileMath();
+        List<Student> studentList = StudentManager.studentsList;
+
+        for (int i = 0; i < studentList.size(); i++) {
+                int stt = (mathList.size() > 0) ? (mathList.size() + 1) : 1;
+                if (studentList.get(i).getStt() == stt) {
+                    int stt1 = stt;
+                    System.out.println("Stt " + stt1);
+                    String name = studentList.get(i).getName();
+                    System.out.println("Tên " + name);
+
+                    double ktBaiCu = inputKtBaiCu();
+                    double kt15p = inputKt15p();
+                    double kt45p = inputKt45p();
+                    double kthk = inputKthk();
+                    double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                    Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                    mathList.add(math);
+                    MathWRFile.writeFileMath(mathList);
+                }
+            }
+        }
 
 
-
-    public static void mathScore() {
+    public static void editMathScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
         mathList = MathWRFile.readFileMath();
         List<Student> studentList = StudentManager.studentsList;
@@ -43,10 +57,12 @@ public class ScoreStudent {
                     double kt15p = inputKt15p();
                     double kt45p = inputKt45p();
                     double kthk = inputKthk();
-                    Math math = new Math(stt1, name, ktBaiCu, kt15p, kt45p, kthk);
-//                    mathList.get(i).setStt(math.getStt());
-//                    mathList.get(i).setStt(math.getStt());
-                    mathList.add(math);
+                    Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk);
+                    mathList.get(i).setKtBaiCu(math.getKtBaiCu());
+                    mathList.get(i).setKt15p(math.getKt15p());
+                    mathList.get(i).setKt45p(math.getKt45p());
+                    mathList.get(i).setKthk(math.getKthk());
+
                     MathWRFile.writeFileMath(mathList);
                 }
 
@@ -57,36 +73,33 @@ public class ScoreStudent {
         MathWRFile.writeFileMath(mathList);
     }
 
-    public static void chemistryScore() {
+//    public static void updateName() {
+//        mathList = MathWRFile.readFileMath();
+//
+//    }
+
+    public static void addChemistryScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
         chemistryList = ChemistryWRFile.readFileChemistry();
         List<Student> studentList = StudentManager.studentsList;
-        System.out.print("Stt học viên: ");
-        try {
-            int stt = Integer.parseInt((sc.nextLine()));
-            for (int i = 0; i < studentList.size(); i++) {
-                if (studentList.get(i).getStt() == stt) {
+        for (int i = 0; i < studentList.size(); i++) {
+            int stt = (chemistryList.size() > 0) ? (chemistryList.size() + 1) : 1;
+            if (studentList.get(i).getStt() == stt) {
+                int stt1 = stt;
+                System.out.println("Stt " + stt1);
+                String name = studentList.get(i).getName();
+                System.out.println("Tên " + name);
 
-                    double ktBaiCu = inputKtBaiCu();
-                    double kt15p = inputKt15p();
-                    double kt45p = inputKt45p();
-                    double kthk = inputKthk();
-                    Chemistry chemistry = new Chemistry(ktBaiCu, kt15p, kt45p, kthk);
-//                    scoreList.get(i).setSubject(score.getSubject());
-//                    scoreList.get(i).setKtBaiCu(score.getKtBaiCu());
-//                    scoreList.get(i).setKt15p(score.getKt15p());
-//                    scoreList.get(i).setKt45p(score.getKt45p());
-//                    scoreList.get(i).setKtBaiCu(score.getKtBaiCu());
-                    System.out.println("Hóa");
-                    chemistryList.add(chemistry);
-                    ChemistryWRFile.writeFileChemistry(chemistryList);
-                }
-
+                double ktBaiCu = inputKtBaiCu();
+                double kt15p = inputKt15p();
+                double kt45p = inputKt45p();
+                double kthk = inputKthk();
+                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                Subject chemistry = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                chemistryList.add(chemistry);
+               ChemistryWRFile.writeFileChemistry(chemistryList);
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Nhập sai: ");
         }
-        MathWRFile.writeFileMath(mathList);
     }
 
     public static double inputKtBaiCu() {
@@ -149,72 +162,3 @@ public class ScoreStudent {
         return kthk;
     }
 }
-//        StudentManager.studentsList = StudentWRFile.readFile();
-//        System.out.println("Id học viên: ");
-//        try {
-//            int id = Integer.parseInt(sc.nextLine());
-//            for (int i = 0; i < StudentManager.studentsList.size(); i++) {
-//                if (StudentManager.studentsList.get(i).getId() == id) {
-//                    double physic = inputPhysic();
-//                    double chemistry = inputChemistry();
-//                    double math = inputMath();
-//
-//                    Student student = new Student(id, physic, chemistry, math);
-//                    StudentManager.studentsList.get(i).setPhysicScore(student.getPhysicScore());
-//                    StudentManager.studentsList.get(i).setChemistryScore(student.getChemistryScore());
-//                    StudentManager.studentsList.get(i).setMathScore(student.getMathScore());
-//                    break;
-//                }
-//            }
-//
-//        } catch (NumberFormatException e) {
-//            e.printStackTrace();
-//        }
-//        StudentWRFile.writeFile(StudentManager.studentsList);
-//    }
-//
-//    public static double inputChemistry() {
-//        double chemistry;
-//        System.out.print("Nhập điểm Hóa: ");
-//        while (true) {
-//            try {
-//                chemistry = Integer.parseInt(sc.nextLine());
-//                break;
-//            } catch (NumberFormatException e) {
-//                System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
-//                System.out.print("Nhập điểm Hóa: ");
-//            }
-//        }
-//        return chemistry;
-//    }
-//
-//    public static double inputMath() {
-//        double math;
-//        System.out.print("Nhập điểm Toán: ");
-//        while (true) {
-//            try {
-//                math = Integer.parseInt(sc.nextLine());
-//                break;
-//            } catch (NumberFormatException e) {
-//                System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
-//                System.out.print("Nhập điểm Toán: ");
-//            }
-//        }
-//        return math;
-//    }
-//
-//    public static double inputPhysic() {
-//        double physic;
-//        System.out.print("Nhập điểm Lý: ");
-//        while (true) {
-//            try {
-//                physic = Integer.parseInt(sc.nextLine());
-//                break;
-//            } catch (NumberFormatException e) {
-//                System.out.println("Nhập sai định dạng. Vui lòng nhập lại!");
-//                System.out.print("Nhập điểm lý: ");
-//            }
-//        }
-//        return physic;
-//    }
-//}

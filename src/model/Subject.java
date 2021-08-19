@@ -1,30 +1,41 @@
 package model;
 
-public class Math extends Student{
+public class Subject extends Student{
     private double ktBaiCu;
     private double kt15p;
     private double kt45p;
     private double kthk;
+    private double gpa;
 
-    public Math() {
+    public Subject() {
     }
 
-    public Math(double ktBaiCu, double kt15p, double kt45p, double kthk) {
-        this.ktBaiCu = ktBaiCu;
-        this.kt15p = kt15p;
-        this.kt45p = kt45p;
-        this.kthk = kthk;
-    }
+//    public Subject(double ktBaiCu, double kt15p, double kt45p, double kthk) {
+//        this.ktBaiCu = ktBaiCu;
+//        this.kt15p = kt15p;
+//        this.kt45p = kt45p;
+//        this.kthk = kthk;
+//    }
 
-    public Math(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk) {
+    public Subject(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk) {
         super(stt, name);
         this.ktBaiCu = ktBaiCu;
         this.kt15p = kt15p;
         this.kt45p = kt45p;
         this.kthk = kthk;
+
     }
 
-    public Math(int stt, String name) {
+    public Subject(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk, double gpa) {
+        super(stt, name);
+        this.ktBaiCu = ktBaiCu;
+        this.kt15p = kt15p;
+        this.kt45p = kt45p;
+        this.kthk = kthk;
+        this.gpa = gpa;
+    }
+
+    public Subject(int stt, String name) {
         super(stt, name);
     }
 
@@ -60,15 +71,24 @@ public class Math extends Student{
         this.kthk = kthk;
     }
 
-    public void displayMath() {
-        Math math = new Math(super.getStt(), super.getName(), ktBaiCu, kt15p, kt45p, kthk);
+    public double getGpa() {
+        return gpa;
+    }
 
-        System.out.printf("%5d | ", math.getStt());
-        System.out.printf("%20s | ",math.getName());
-        System.out.printf("%10f | ", math.getKtBaiCu());
-        System.out.printf("%10f | ", math.getKt15p());
-        System.out.printf("%10f | ", math.getKt45p());
-        System.out.printf("%10f%n", math.getKthk());
+    public void setGpa(double gpa) {
+        this.gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+    }
+
+    public void display() {
+        Subject subject = new Subject(super.getStt(), super.getName(), ktBaiCu, kt15p, kt45p, kthk, gpa);
+
+        System.out.printf("%5d | ", subject.getStt());
+        System.out.printf("%20s | ", subject.getName());
+        System.out.printf("%10f | ", subject.getKtBaiCu());
+        System.out.printf("%10f | ", subject.getKt15p());
+        System.out.printf("%10f | ", subject.getKt45p());
+        System.out.printf("%10f | ", subject.getKthk());
+        System.out.printf("%10f%n", subject.getGpa());
 
     }
 

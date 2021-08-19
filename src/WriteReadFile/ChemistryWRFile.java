@@ -1,14 +1,14 @@
-package data;
+package WriteReadFile;
 
 import model.Chemistry;
-import model.Math;
+import model.Subject;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChemistryWRFile {
-    public static void writeFileChemistry(List<Chemistry> chemistryList) {
+    public static void writeFileChemistry(List<Subject> chemistryList) {
 
         try {
             File infile = new File("src\\Data\\Chemistrys.csv");
@@ -18,11 +18,14 @@ public class ChemistryWRFile {
                 FileWriter fw = new FileWriter(infile);
                 BufferedWriter bw = new BufferedWriter(fw);
 
-                for (Chemistry chemistry : chemistryList) {
-                    bw.write(chemistry.getKtBaiCu() +
+                for (Subject chemistry : chemistryList) {
+                    bw.write(chemistry.getStt() +
+                            ", " + chemistry.getName() +
+                            ", " + chemistry.getKtBaiCu() +
                             ", " + chemistry.getKt15p() +
                             ", " + chemistry.getKt45p() +
                             ", " + chemistry.getKthk() +
+                            ", " + chemistry.getGpa() +
                             "\n");
                 }
                 bw.close();
@@ -33,8 +36,8 @@ public class ChemistryWRFile {
         }
     }
 
-    public static List<Chemistry> readFileChemistry() {
-        List<Chemistry> chemistryList = new ArrayList<>();
+    public static List<Subject> readFileChemistry() {
+        List<Subject> chemistryList = new ArrayList<>();
         try {
             File infile = new File("src\\Data\\Chemistrys.csv");
             FileReader fr = new FileReader(infile);
@@ -44,11 +47,14 @@ public class ChemistryWRFile {
             String splitBy = ", ";
             while ((line = br.readLine()) != null) {
                 String[] chemistry = line.split(splitBy);
-                Chemistry chemistry1 = new Chemistry();
-                chemistry1.setKtBaiCu(Double.parseDouble(chemistry[0]));
-                chemistry1.setKt15p(Double.parseDouble(chemistry[1]));
-                chemistry1.setKt45p(Double.parseDouble(chemistry[2]));
-                chemistry1.setKthk(Double.parseDouble(chemistry[3]));
+                Subject chemistry1 = new Subject();
+                chemistry1.setStt(Integer.parseInt(chemistry[0]));
+                chemistry1.setName(chemistry[1]);
+                chemistry1.setKtBaiCu(Double.parseDouble(chemistry[2]));
+                chemistry1.setKt15p(Double.parseDouble(chemistry[3]));
+                chemistry1.setKt45p(Double.parseDouble(chemistry[4]));
+                chemistry1.setKthk(Double.parseDouble(chemistry[5]));
+                chemistry1.setGpa(Double.parseDouble(chemistry[6]));
                 chemistryList.add(chemistry1);
 
             }

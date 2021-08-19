@@ -112,18 +112,4 @@ public class Student {
         System.out.format("%10f | ", student.getChemistryScore());
         System.out.format("%10f%n", student.getMathScore());
     }
-
-//    @Override
-//    public String toString() {
-//        return "modal.Student{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", birthDay=" + birthDay +
-//                ", address='" + address + '\'' +
-//                ", physicScore=" + physicScore +
-//                ", chemistryScore=" + chemistryScore +
-//                ", mathScore=" + mathScore +
-//                ", gpa=" + gpa +
-//                '}';
-//    }
 }

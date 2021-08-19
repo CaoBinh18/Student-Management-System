@@ -1,20 +1,24 @@
 package service;
 
-import data.StudentWRFile;
+import WriteReadFile.MathWRFile;
+import WriteReadFile.StudentWRFile;
+import model.Subject;
 import model.Student;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 import static service.Regex.*;
 
-public class StudentManager  {
+public class StudentManager {
     private static final Scanner sc = new Scanner(System.in);
     static List<Student> studentsList;
+    static List<Subject> mathList;
 
     public static void show() {
         studentsList = StudentWRFile.readFile();
-        System.out.format("%5s | %20s | %10s | %20s | %10s | %10s | %10s%n", "Stt", "Tên", "Ngày sinh", "Địa chỉ", "Lý", "Hóa", "Toán");
+        System.out.format("%5s | %20s | %10s | %20s | %10s | %10s | %10s | %10s%n", "Stt", "Tên", "Ngày sinh", "Địa chỉ", "Lý", "Hóa", "Toán", "Điểm trung bình");
         for (Student student : studentsList) {
             student.displayStudent();
         }
@@ -48,6 +52,7 @@ public class StudentManager  {
 
     public static void edit() {
         studentsList = StudentWRFile.readFile();
+        mathList = MathWRFile.readFileMath();
         System.out.print("Nhập Stt học viên cần sửa: ");
         try {
             int stt = Integer.parseInt(sc.nextLine());
@@ -61,31 +66,45 @@ public class StudentManager  {
                     studentsList.get(i).setName(student.getName());
                     studentsList.get(i).setBirthday(student.getBirthday());
                     studentsList.get(i).setAddress(student.getAddress());
-                    data.StudentWRFile.writeFile(studentsList);
+                    StudentWRFile.writeFile(studentsList);
+                    for (Subject math : mathList) {
+                        if (math.getStt() == stt) {
+                            math.setName(name);
+                        }
+                    }
+                    MathWRFile.writeFileMath(mathList);
                     break;
                 }
             }
         } catch (NumberFormatException e) {
             System.out.println("ID không tồn tại. Hãy nhập lại");
         }
-        StudentWRFile.writeFile(studentsList);
     }
 
     public static void delete() {
         studentsList = StudentWRFile.readFile();
+        mathList = MathWRFile.readFileMath();
         System.out.print("Nhập stt của học sinh cần xóa: ");
         try {
             int stt = Integer.parseInt(sc.nextLine());
             studentsList.remove(stt - 1);
+            mathList.remove(stt - 1);
             for (Student student : studentsList) {
                 if (student.getStt() > stt - 1) {
                     student.setStt(student.getStt() - 1);
+                }
+            }
+
+            for (Subject math : mathList) {
+                if (math.getStt() > stt - 1) {
+                    math.setStt(math.getStt() - 1);
                 }
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         StudentWRFile.writeFile(studentsList);
+        MathWRFile.writeFileMath(mathList);
     }
 
     public static String inputName() {
@@ -126,4 +145,6 @@ public class StudentManager  {
         }
         return address;
     }
+
+
 }
