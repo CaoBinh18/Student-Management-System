@@ -62,10 +62,10 @@ public class Main {
                                 ScoreStudent.addChemistryScore();
                                 break;
                             case 3:
-
+                                ScoreStudent.addBiologyScore();
                                 break;
                             case 4:
-
+                                ScoreStudent.addPhysicScore();
                                 break;
                             case 0:
                                 showMenu();

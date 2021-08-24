@@ -1,8 +1,6 @@
 package service;
 
-import WriteReadFile.ChemistryWRFile;
-import WriteReadFile.MathWRFile;
-import WriteReadFile.StudentWRFile;
+import WriteReadFile.*;
 import model.*;
 import model.Subject;
 
@@ -13,8 +11,8 @@ public class ScoreStudent {
     private static final Scanner sc = new Scanner(System.in);
     static List<Subject> mathList;
     static List<Subject> chemistryList;
-    static List<Biology> biologyList;
-    static List<Physic> physicList;
+    static List<Subject> biologyList;
+    static List<Subject> physicList;
 
     public static void addMathScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
@@ -103,6 +101,67 @@ public class ScoreStudent {
                 for (Student student : studentList) {
                     if (student.getStt() == stt1) {
                         student.setChemistryScore(gpa);
+                    }
+                }
+                StudentWRFile.writeFile(studentList);
+            }
+        }
+    }
+
+
+    public static void addBiologyScore() {
+        StudentManager.studentsList = StudentWRFile.readFile();
+        biologyList = BiologyWRFile.readFileBiology();
+        List<Student> studentList = StudentManager.studentsList;
+        for (int i = 0; i < studentList.size(); i++) {
+            int stt = (biologyList.size() > 0) ? (biologyList.size() + 1) : 1;
+            if (studentList.get(i).getStt() == stt) {
+                int stt1 = stt;
+                System.out.println("Stt " + stt1);
+                String name = studentList.get(i).getName();
+                System.out.println("Tên " + name);
+
+                double ktBaiCu = inputKtBaiCu();
+                double kt15p = inputKt15p();
+                double kt45p = inputKt45p();
+                double kthk = inputKthk();
+                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                Subject biogoly = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                biologyList.add(biogoly);
+                BiologyWRFile.writeFileBiology(biologyList);
+                for (Student student : studentList) {
+                    if (student.getStt() == stt1) {
+                        student.setBiologyScore(gpa);
+                    }
+                }
+                StudentWRFile.writeFile(studentList);
+            }
+        }
+    }
+
+    public static void addPhysicScore() {
+        StudentManager.studentsList = StudentWRFile.readFile();
+        physicList = PhysicWRFile.readFilePhysic();
+        List<Student> studentList = StudentManager.studentsList;
+        for (int i = 0; i < studentList.size(); i++) {
+            int stt = (physicList.size() > 0) ? (physicList.size() + 1) : 1;
+            if (studentList.get(i).getStt() == stt) {
+                int stt1 = stt;
+                System.out.println("Stt " + stt1);
+                String name = studentList.get(i).getName();
+                System.out.println("Tên " + name);
+
+                double ktBaiCu = inputKtBaiCu();
+                double kt15p = inputKt15p();
+                double kt45p = inputKt45p();
+                double kthk = inputKthk();
+                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
+                Subject physic = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                physicList.add(physic);
+                PhysicWRFile.writeFilePhysic(physicList);
+                for (Student student : studentList) {
+                    if (student.getStt() == stt1) {
+                        student.setPhysicScore(gpa);
                     }
                 }
                 StudentWRFile.writeFile(studentList);

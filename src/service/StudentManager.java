@@ -1,8 +1,6 @@
 package service;
 
-import WriteReadFile.ChemistryWRFile;
-import WriteReadFile.MathWRFile;
-import WriteReadFile.StudentWRFile;
+import WriteReadFile.*;
 import model.Subject;
 import model.Student;
 
@@ -15,8 +13,9 @@ import static service.Regex.*;
 public class StudentManager {
     private static final Scanner sc = new Scanner(System.in);
     static List<Student> studentsList;
-    static List<Subject> mathList;
-    static List<Subject> chemistryList;
+    static List<Subject> mathList, chemistryList, biologyList, physicList;
+//    static List<Subject> ;
+//    static List<Subject> ;
 
     public static void show() {
         studentsList = StudentWRFile.readFile();
@@ -56,6 +55,8 @@ public class StudentManager {
         studentsList = StudentWRFile.readFile();
         mathList = MathWRFile.readFileMath();
         chemistryList = ChemistryWRFile.readFileChemistry();
+        biologyList = BiologyWRFile.readFileBiology();
+        physicList = PhysicWRFile.readFilePhysic();
 
         System.out.print("Nhập Stt học viên cần sửa: ");
         try {
@@ -85,6 +86,20 @@ public class StudentManager {
                         }
                     }
                     ChemistryWRFile.writeFileChemistry(chemistryList);
+
+                    for (Subject biology : biologyList) {
+                        if (biology.getStt() == stt) {
+                            biology.setName(name);
+                        }
+                    }
+                    BiologyWRFile.writeFileBiology(biologyList);
+
+                    for (Subject physic : physicList) {
+                        if (physic.getStt() == stt) {
+                            physic.setName(name);
+                        }
+                    }
+                    PhysicWRFile.writeFilePhysic(physicList);
                     break;
                 }
             }
@@ -97,12 +112,18 @@ public class StudentManager {
         studentsList = StudentWRFile.readFile();
         mathList = MathWRFile.readFileMath();
         chemistryList = ChemistryWRFile.readFileChemistry();
+        biologyList = BiologyWRFile.readFileBiology();
+        physicList = PhysicWRFile.readFilePhysic();
+
         System.out.print("Nhập stt của học sinh cần xóa: ");
         try {
             int stt = Integer.parseInt(sc.nextLine());
             studentsList.remove(stt - 1);
             mathList.remove(stt - 1);
             chemistryList.remove(stt - 1);
+            biologyList.remove(stt -1);
+            physicList.remove(stt - 1);
+
             for (Student student : studentsList) {
                 if (student.getStt() > stt - 1) {
                     student.setStt(student.getStt() - 1);
@@ -120,12 +141,26 @@ public class StudentManager {
                     chemistry.setStt(chemistry.getStt() - 1);
                 }
             }
+
+            for (Subject biology : biologyList) {
+                if (biology.getStt() > stt - 1) {
+                    biology.setStt(biology.getStt() - 1);
+                }
+            }
+
+            for (Subject physic : physicList) {
+                if (physic.getStt() > stt - 1) {
+                    physic.setStt(physic.getStt() - 1);
+                }
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         StudentWRFile.writeFile(studentsList);
         MathWRFile.writeFileMath(mathList);
         ChemistryWRFile.writeFileChemistry(chemistryList);
+        BiologyWRFile.writeFileBiology(biologyList);
+        PhysicWRFile.writeFilePhysic(physicList);
     }
 
     public static String inputName() {
