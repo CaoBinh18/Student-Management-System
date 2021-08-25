@@ -4,6 +4,7 @@ import WriteReadFile.*;
 import model.*;
 import model.Subject;
 
+import java.lang.Math;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,8 +23,7 @@ public class ScoreStudent {
         for (int i = 0; i < studentList.size(); i++) {
             int stt = (mathList.size() > 0) ? (mathList.size() + 1) : 1;
             if (studentList.get(i).getStt() == stt) {
-                int stt1 = stt;
-                System.out.println("Stt " + stt1);
+                System.out.println("Stt " + stt);
                 String name = studentList.get(i).getName();
                 System.out.println("Tên " + name);
 
@@ -31,13 +31,13 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
-                Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+                Subject math = new Subject(stt, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 mathList.add(math);
                 MathWRFile.writeFileMath(mathList);
 
                 for (Student student : studentList) {
-                    if (student.getStt() == stt1) {
+                    if (student.getStt() == stt) {
                         student.setMathScore(gpa);
                     }
                 }
@@ -47,36 +47,44 @@ public class ScoreStudent {
     }
 
 
-    public static void editMathScore() {
-        StudentManager.studentsList = StudentWRFile.readFile();
-        mathList = MathWRFile.readFileMath();
-        List<Student> studentList = StudentManager.studentsList;
-        System.out.print("Stt học viên: ");
-        try {
-            int stt = Integer.parseInt((sc.nextLine()));
-            for (int i = 0; i < studentList.size(); i++) {
-                if (studentList.get(i).getStt() == stt) {
-                    int stt1 = studentList.get(i).getStt();
-                    String name = studentList.get(i).getName();
-                    double ktBaiCu = inputKtBaiCu();
-                    double kt15p = inputKt15p();
-                    double kt45p = inputKt45p();
-                    double kthk = inputKthk();
-                    Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk);
-                    mathList.get(i).setKtBaiCu(math.getKtBaiCu());
-                    mathList.get(i).setKt15p(math.getKt15p());
-                    mathList.get(i).setKt45p(math.getKt45p());
-                    mathList.get(i).setKthk(math.getKthk());
-
-                    MathWRFile.writeFileMath(mathList);
-                }
-
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Nhập sai: ");
-        }
-        MathWRFile.writeFileMath(mathList);
-    }
+//    public static void editMathScore() {
+//        StudentManager.studentsList = StudentWRFile.readFile();
+//        mathList = MathWRFile.readFileMath();
+//        List<Student> studentList = StudentManager.studentsList;
+//        System.out.print("Stt học viên: ");
+//        try {
+//            int stt = Integer.parseInt((sc.nextLine()));
+//            for (int i = 0; i < studentList.size(); i++) {
+//                if (studentList.get(i).getStt() == stt) {
+//                    int stt1 = studentList.get(i).getStt();
+//                    String name = studentList.get(i).getName();
+//                    double ktBaiCu = inputKtBaiCu();
+//                    double kt15p = inputKt15p();
+//                    double kt45p = inputKt45p();
+//                    double kthk = inputKthk();
+//                    double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+//                    Subject math = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+//                    mathList.get(i).setKtBaiCu(math.getKtBaiCu());
+//                    mathList.get(i).setKt15p(math.getKt15p());
+//                    mathList.get(i).setKt45p(math.getKt45p());
+//                    mathList.get(i).setKthk(math.getKthk());
+//                    mathList.get(i).setGpa(math.getGpa());
+//                    MathWRFile.writeFileMath(mathList);
+//
+//                    for (Student student : studentList) {
+//                        if (student.getStt() == stt) {
+//                            student.setMathScore(gpa);
+//                        }
+//                    }
+//                    StudentWRFile.writeFile(studentList);
+//                }
+//
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("Nhập sai: ");
+//        }
+//        MathWRFile.writeFileMath(mathList);
+//    }
 
     public static void addChemistryScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
@@ -85,8 +93,7 @@ public class ScoreStudent {
         for (int i = 0; i < studentList.size(); i++) {
             int stt = (chemistryList.size() > 0) ? (chemistryList.size() + 1) : 1;
             if (studentList.get(i).getStt() == stt) {
-                int stt1 = stt;
-                System.out.println("Stt " + stt1);
+                System.out.println("Stt " + stt);
                 String name = studentList.get(i).getName();
                 System.out.println("Tên " + name);
 
@@ -94,12 +101,12 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
-                Subject chemistry = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+                Subject chemistry = new Subject(stt, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 chemistryList.add(chemistry);
                 ChemistryWRFile.writeFileChemistry(chemistryList);
                 for (Student student : studentList) {
-                    if (student.getStt() == stt1) {
+                    if (student.getStt() == stt) {
                         student.setChemistryScore(gpa);
                     }
                 }
@@ -108,6 +115,44 @@ public class ScoreStudent {
         }
     }
 
+//    public static void editChemistryScore() {
+//        StudentManager.studentsList = StudentWRFile.readFile();
+//        chemistryList = ChemistryWRFile.readFileChemistry();
+//        List<Student> studentList = StudentManager.studentsList;
+//        System.out.print("Stt học viên: ");
+//        try {
+//            int stt = Integer.parseInt((sc.nextLine()));
+//            for (int i = 0; i < studentList.size(); i++) {
+//                if (studentList.get(i).getStt() == stt) {
+//                    int stt1 = studentList.get(i).getStt();
+//                    String name = studentList.get(i).getName();
+//                    double ktBaiCu = inputKtBaiCu();
+//                    double kt15p = inputKt15p();
+//                    double kt45p = inputKt45p();
+//                    double kthk = inputKthk();
+//                    double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+//                    Subject chemistry = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+//                    chemistryList.get(i).setKtBaiCu(chemistry.getKtBaiCu());
+//                    chemistryList.get(i).setKt15p(chemistry.getKt15p());
+//                    chemistryList.get(i).setKt45p(chemistry.getKt45p());
+//                    chemistryList.get(i).setKthk(chemistry.getKthk());
+//                    chemistryList.get(i).setGpa(chemistry.getGpa());
+//
+//                    ChemistryWRFile.writeFileChemistry(chemistryList);
+//
+//                    for (Student student : studentList) {
+//                        if (student.getStt() == stt) {
+//                            student.setChemistryScore(gpa);
+//                        }
+//                    }
+//                    StudentWRFile.writeFile(studentList);
+//                }
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("Nhập sai: ");
+//        }
+////        MathWRFile.writeFileMath(mathList);
+//    }
 
     public static void addBiologyScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
@@ -116,8 +161,7 @@ public class ScoreStudent {
         for (int i = 0; i < studentList.size(); i++) {
             int stt = (biologyList.size() > 0) ? (biologyList.size() + 1) : 1;
             if (studentList.get(i).getStt() == stt) {
-                int stt1 = stt;
-                System.out.println("Stt " + stt1);
+                System.out.println("Stt " + stt);
                 String name = studentList.get(i).getName();
                 System.out.println("Tên " + name);
 
@@ -125,12 +169,12 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
-                Subject biogoly = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+                Subject biogoly = new Subject(stt, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 biologyList.add(biogoly);
                 BiologyWRFile.writeFileBiology(biologyList);
                 for (Student student : studentList) {
-                    if (student.getStt() == stt1) {
+                    if (student.getStt() == stt) {
                         student.setBiologyScore(gpa);
                     }
                 }
@@ -139,6 +183,44 @@ public class ScoreStudent {
         }
     }
 
+//    public static void editBiologyScore() {
+//        StudentManager.studentsList = StudentWRFile.readFile();
+//        biologyList = BiologyWRFile.readFileBiology();
+//        List<Student> studentList = StudentManager.studentsList;
+//        System.out.print("Stt học viên: ");
+//        try {
+//            int stt = Integer.parseInt((sc.nextLine()));
+//            for (int i = 0; i < studentList.size(); i++) {
+//                if (studentList.get(i).getStt() == stt) {
+//                    int stt1 = studentList.get(i).getStt();
+//                    String name = studentList.get(i).getName();
+//                    double ktBaiCu = inputKtBaiCu();
+//                    double kt15p = inputKt15p();
+//                    double kt45p = inputKt45p();
+//                    double kthk = inputKthk();
+//                    double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+//                    Subject subject = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk);
+//                    biologyList.get(i).setKtBaiCu(subject.getKtBaiCu());
+//                    biologyList.get(i).setKt15p(subject.getKt15p());
+//                    biologyList.get(i).setKt45p(subject.getKt45p());
+//                    biologyList.get(i).setKthk(subject.getKthk());
+//                    biologyList.get(i).setGpa(subject.getGpa());
+//                    BiologyWRFile.writeFileBiology(biologyList);
+//                    for (Student student : studentList) {
+//                        if (student.getStt() == stt) {
+//                            student.setBiologyScore(gpa);
+//                        }
+//                    }
+//                    StudentWRFile.writeFile(studentList);
+//                }
+//
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("Nhập sai: ");
+//        }
+////        MathWRFile.writeFileMath(mathList);
+//    }
+
     public static void addPhysicScore() {
         StudentManager.studentsList = StudentWRFile.readFile();
         physicList = PhysicWRFile.readFilePhysic();
@@ -146,8 +228,7 @@ public class ScoreStudent {
         for (int i = 0; i < studentList.size(); i++) {
             int stt = (physicList.size() > 0) ? (physicList.size() + 1) : 1;
             if (studentList.get(i).getStt() == stt) {
-                int stt1 = stt;
-                System.out.println("Stt " + stt1);
+                System.out.println("Stt " + stt);
                 String name = studentList.get(i).getName();
                 System.out.println("Tên " + name);
 
@@ -155,12 +236,12 @@ public class ScoreStudent {
                 double kt15p = inputKt15p();
                 double kt45p = inputKt45p();
                 double kthk = inputKthk();
-                double gpa = (ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7;
-                Subject physic = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+                double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+                Subject physic = new Subject(stt, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
                 physicList.add(physic);
                 PhysicWRFile.writeFilePhysic(physicList);
                 for (Student student : studentList) {
-                    if (student.getStt() == stt1) {
+                    if (student.getStt() == stt) {
                         student.setPhysicScore(gpa);
                     }
                 }
@@ -168,6 +249,45 @@ public class ScoreStudent {
             }
         }
     }
+
+//    public static void editPhysicScore() {
+//        StudentManager.studentsList = StudentWRFile.readFile();
+//        physicList = PhysicWRFile.readFilePhysic();
+//        List<Student> studentList = StudentManager.studentsList;
+//        System.out.print("Stt học viên: ");
+//        try {
+//            int stt = Integer.parseInt((sc.nextLine()));
+//            for (int i = 0; i < studentList.size(); i++) {
+//                if (studentList.get(i).getStt() == stt) {
+//                    int stt1 = studentList.get(i).getStt();
+//                    String name = studentList.get(i).getName();
+//                    double ktBaiCu = inputKtBaiCu();
+//                    double kt15p = inputKt15p();
+//                    double kt45p = inputKt45p();
+//                    double kthk = inputKthk();
+//                    double gpa = Math.round(((ktBaiCu + kt15p + (kt45p * 2) + (kthk * 3)) / 7) * 100.0) / 100.0;
+//
+//                    Subject subject = new Subject(stt1, name, ktBaiCu, kt15p, kt45p, kthk, gpa);
+//                    physicList.get(i).setKtBaiCu(subject.getKtBaiCu());
+//                    physicList.get(i).setKt15p(subject.getKt15p());
+//                    physicList.get(i).setKt45p(subject.getKt45p());
+//                    physicList.get(i).setKthk(subject.getKthk());
+//                    physicList.get(i).setGpa(subject.getGpa());
+//
+//                    PhysicWRFile.writeFilePhysic(physicList);
+//                    for (Student student : studentList) {
+//                        if (student.getStt() == stt) {
+//                            student.setPhysicScore(gpa);
+//                        }
+//                    }
+//                    StudentWRFile.writeFile(studentList);
+//                }
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("Nhập sai: ");
+//        }
+//        PhysicWRFile.writeFilePhysic(physicList);
+//    }
 
     public static double inputKtBaiCu() {
         double ktBaiCu;

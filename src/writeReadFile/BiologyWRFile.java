@@ -15,12 +15,12 @@ public class BiologyWRFile {
 
             for (Subject biology : biologyList) {
                 bw.write(biology.getStt() +
-                        ", " + biology.getName() +
-                        ", " + biology.getKtBaiCu() +
-                        ", " + biology.getKt15p() +
-                        ", " + biology.getKt45p() +
-                        ", " + biology.getKthk() +
-                        ", " + biology.getGpa() +
+                        ";" + biology.getName() +
+                        ";" + biology.getKtBaiCu() +
+                        ";" + biology.getKt15p() +
+                        ";" + biology.getKt45p() +
+                        ";" + biology.getKthk() +
+                        ";" + biology.getGpa() +
                         "\n");
             }
             bw.close();
@@ -41,7 +41,7 @@ public class BiologyWRFile {
             BufferedReader br = new BufferedReader(fr);
 
             String line;
-            String splitBy = ", ";
+            String splitBy = ";";
             while ((line = br.readLine()) != null) {
                 String[] biology = line.split(splitBy);
                 Subject biology1 = new Subject();

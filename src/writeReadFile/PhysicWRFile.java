@@ -15,12 +15,12 @@ public class PhysicWRFile {
 
             for (Subject physic : physicList) {
                 bw.write(physic.getStt() +
-                        ", " + physic.getName() +
-                        ", " + physic.getKtBaiCu() +
-                        ", " + physic.getKt15p() +
-                        ", " + physic.getKt45p() +
-                        ", " + physic.getKthk() +
-                        ", " + physic.getGpa() +
+                        ";" + physic.getName() +
+                        ";" + physic.getKtBaiCu() +
+                        ";" + physic.getKt15p() +
+                        ";" + physic.getKt45p() +
+                        ";" + physic.getKthk() +
+                        ";" + physic.getGpa() +
                         "\n");
             }
             bw.close();
@@ -41,7 +41,7 @@ public class PhysicWRFile {
             BufferedReader br = new BufferedReader(fr);
 
             String line;
-            String splitBy = ", ";
+            String splitBy = ";";
             while ((line = br.readLine()) != null) {
                 String[] physic = line.split(splitBy);
                 Subject physic1 = new Subject();

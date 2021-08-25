@@ -1,5 +1,6 @@
 package presentation;
 
+import service.EditScore;
 import service.ScoreStudent;
 import service.ShowScore;
 import service.StudentManager;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int choice, choice2, choice3;
+        int choice, choice2, choice3, choice4;
 
         do {
             showMenu();
@@ -78,12 +79,8 @@ public class Main {
                     } while (choice2 != 0);
                     break;
                 case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
                     do {
-                        showScore();
+                        MenuEditScore();
                         while (true) {
                             try {
                                 choice3 = new Scanner(System.in).nextInt();
@@ -94,6 +91,43 @@ public class Main {
                         }
 
                         switch (choice3) {
+                            case 1:
+                                EditScore.editMathScore();
+                                break;
+                            case 2:
+                                EditScore.editChemistryScore();
+                                break;
+                            case 3:
+                                EditScore.editBiologyScore();
+                                break;
+                            case 4:
+                                EditScore.editPhysicScore();
+                                break;
+                            case 0:
+                                showMenu();
+                                break;
+                            default:
+                                System.err.println("Bạn đã nhập sai!");
+                                System.err.println("Hãy nhập lại: ");
+                                break;
+                        }
+                    } while (choice3 != 0);
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    do {
+                        showScore();
+                        while (true) {
+                            try {
+                                choice4 = new Scanner(System.in).nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Không hợp lệ!!!");
+                            }
+                        }
+
+                        switch (choice4) {
                             case 1 -> ShowScore.showScoreMath();
                             case 2 -> ShowScore.showScoreChmistry();
                             case 3 -> ShowScore.showScoreBiology();
@@ -104,7 +138,7 @@ public class Main {
                                 System.err.println("Hãy nhập lại: ");
                             }
                         }
-                    } while (choice3 != 0);
+                    } while (choice4 != 0);
                     break;
                 case 0:
                     System.exit(0);
@@ -150,6 +184,17 @@ public class Main {
         System.out.println("2. Bảng điểm Hóa");
         System.out.println("3. Bảng điểm Sinh");
         System.out.println("4. Bảng điểm Lý");
+        System.out.println("0. Quay lại Menu");
+        System.out.println("==================================");
+        System.out.print("Nhập lựa chọn: ");
+    }
+
+    static void MenuEditScore() {
+        System.out.println("\nChỉnh sửa điểm");
+        System.out.println("1. Sửa điểm Toán");
+        System.out.println("2. Sửa điểm Hóa");
+        System.out.println("3. Sửa điểm Sinh");
+        System.out.println("4. Sửa điểm Lý");
         System.out.println("0. Quay lại Menu");
         System.out.println("==================================");
         System.out.print("Nhập lựa chọn: ");

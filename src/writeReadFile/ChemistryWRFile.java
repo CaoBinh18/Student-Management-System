@@ -15,12 +15,12 @@ public class ChemistryWRFile {
 
             for (Subject chemistry : chemistryList) {
                 bw.write(chemistry.getStt() +
-                        ", " + chemistry.getName() +
-                        ", " + chemistry.getKtBaiCu() +
-                        ", " + chemistry.getKt15p() +
-                        ", " + chemistry.getKt45p() +
-                        ", " + chemistry.getKthk() +
-                        ", " + chemistry.getGpa() +
+                        ";" + chemistry.getName() +
+                        ";" + chemistry.getKtBaiCu() +
+                        ";" + chemistry.getKt15p() +
+                        ";" + chemistry.getKt45p() +
+                        ";" + chemistry.getKthk() +
+                        ";" + chemistry.getGpa() +
                         "\n");
             }
             bw.close();
@@ -41,7 +41,7 @@ public class ChemistryWRFile {
             BufferedReader br = new BufferedReader(fr);
 
             String line;
-            String splitBy = ", ";
+            String splitBy = ";";
             while ((line = br.readLine()) != null) {
                 String[] chemistry = line.split(splitBy);
                 Subject chemistry1 = new Subject();

@@ -14,12 +14,10 @@ public class StudentManager {
     private static final Scanner sc = new Scanner(System.in);
     static List<Student> studentsList;
     static List<Subject> mathList, chemistryList, biologyList, physicList;
-//    static List<Subject> ;
-//    static List<Subject> ;
 
     public static void show() {
         studentsList = StudentWRFile.readFile();
-        System.out.format("%5s | %20s | %10s | %20s | %10s | %10s | %10s | %10s | %10s%n",
+        System.out.format("%5s | %20s | %10s | %30s | %10s | %10s | %10s | %10s | %10s%n",
                 "Stt", "Tên", "Ngày sinh", "Địa chỉ", "Toán", "Hóa", "Sinh", "Lý", "Điểm trung bình");
         for (Student student : studentsList) {
             student.displayStudent();

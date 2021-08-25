@@ -15,12 +15,12 @@ public class MathWRFile {
 
             for (Subject math : mathList) {
                 bw.write(math.getStt() +
-                        ", " + math.getName() +
-                        ", " + math.getKtBaiCu() +
-                        ", " + math.getKt15p() +
-                        ", " + math.getKt45p() +
-                        ", " + math.getKthk() +
-                        ", " + math.getGpa() +
+                        ";" + math.getName() +
+                        ";" + math.getKtBaiCu() +
+                        ";" + math.getKt15p() +
+                        ";" + math.getKt45p() +
+                        ";" + math.getKthk() +
+                        ";" + math.getGpa() +
                         "\n");
             }
             bw.close();
@@ -41,7 +41,7 @@ public class MathWRFile {
             BufferedReader br = new BufferedReader(fr);
 
             String line;
-            String splitBy = ", ";
+            String splitBy = ";";
             while ((line = br.readLine()) != null) {
                 String[] math = line.split(splitBy);
                 Subject math1 = new Subject();

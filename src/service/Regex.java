@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Regex {
     public static boolean checkDateTime(String str) {
-        String regex = "\\d{1,2}[-|/]\\d{1,2}[-|/]\\d{4}";
+        String regex = "([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)(((1)(9)[9][0-9])|((2)(0)[0-1][0-5]))";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return !matcher.matches();

@@ -100,7 +100,7 @@ public class Student {
     }
 
     public double getGpa1() {
-        return gpa1 = (mathScore + chemistryScore + biologyScore + physicScore) / 4;
+        return gpa1 = java.lang.Math.round(((mathScore + chemistryScore + biologyScore + physicScore) / 4) * 100.0) / 100.0;
     }
 
     public void setGpa1(double gpa1) {
@@ -112,11 +112,24 @@ public class Student {
         System.out.format("%5d | ", student.getStt());
         System.out.format("%20s | ", student.getName());
         System.out.format("%10s | ", student.getBirthday());
-        System.out.format("%20s | ", student.getAddress());
+        System.out.format("%30s | ", student.getAddress());
         System.out.format("%10.2f | ", student.getMathScore());
         System.out.format("%10.2f | ", student.getChemistryScore());
         System.out.format("%10.2f | ", student.getBiologyScore());
         System.out.format("%10.2f | ", student.getPhysicScore());
         System.out.printf("%10.2f%n", student.getGpa1());
+    }
+
+    @Override
+    public String toString() {
+        return "%5d | " + getStt() +
+                "%20s | " + getName() +
+                "%10s | " + getBirthday() +
+                "%30s | " + getBirthday() +
+                "%10s | " + getMathScore() +
+                "%10s | " + getChemistryScore() +
+                "%10s | " + getBiologyScore() +
+                "%10s | " + getPhysicScore() +
+                "%10s%n" + getGpa1();
     }
 }

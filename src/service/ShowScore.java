@@ -1,8 +1,7 @@
 package service;
 
-import WriteReadFile.ChemistryWRFile;
-import WriteReadFile.MathWRFile;
-import WriteReadFile.StudentWRFile;
+import WriteReadFile.*;
+import model.Physic;
 import model.Subject;
 import model.Student;
 
@@ -33,24 +32,24 @@ public class ShowScore {
     }
 
     public static void showScoreBiology() {
-        ScoreStudent.mathList = MathWRFile.readFileMath();
+        ScoreStudent.biologyList = BiologyWRFile.readFileBiology();
         StudentManager.studentsList = StudentWRFile.readFile();
         List<Student> studentList = StudentManager.studentsList;
         System.out.println("                          ===========Sinh==========");
         System.out.printf("%5s | %20s | %10s | %10s | %10s | %10s | %10s%n", "Stt", "Tên", "KtBaiCu", "Kt15p", "Kt45p", "Kthk", "GPA");
-        for (Subject math : ScoreStudent.mathList) {
-            math.display();
+        for (Subject biology : ScoreStudent.biologyList) {
+            biology.display();
         }
     }
 
     public static void showScorePhysic() {
-        ScoreStudent.mathList = MathWRFile.readFileMath();
+        ScoreStudent.physicList = PhysicWRFile.readFilePhysic();
         StudentManager.studentsList = StudentWRFile.readFile();
         List<Student> studentList = StudentManager.studentsList;
-        System.out.println("                          ===========Toán==========");
+        System.out.println("                          ===========Lý==========");
         System.out.printf("%5s | %20s | %10s | %10s | %10s | %10s | %10s%n", "Stt", "Tên", "KtBaiCu", "Kt15p", "Kt45p", "Kthk", "GPA");
-        for (Subject math : ScoreStudent.mathList) {
-            math.display();
+        for (Subject physic : ScoreStudent.physicList) {
+            physic.display();
         }
     }
 }

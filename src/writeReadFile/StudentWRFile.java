@@ -12,20 +12,20 @@ public class StudentWRFile {
     public static void writeFile(List<Student> studentList) {
 
         try {
-            File infile = new File("src\\Data\\student.csv");
+            File infile = new File("src\\data\\student.csv");
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
 
             for (Student student : studentList) {
                 bw.write(student.getStt() +
-                        ", " + student.getName() +
-                        ", " + student.getBirthday() +
-                        ", " + student.getAddress() +
-                        ", " + student.getMathScore() +
-                        ", " + student.getChemistryScore() +
-                        ", " + student.getBiologyScore() +
-                        ", " + student.getPhysicScore() +
-                        ", " + student.getGpa1() +
+                        ";" + student.getName() +
+                        ";" + student.getBirthday() +
+                        ";" + student.getAddress() +
+                        ";" + student.getMathScore() +
+                        ";" + student.getChemistryScore() +
+                        ";" + student.getBiologyScore() +
+                        ";" + student.getPhysicScore() +
+                        ";" + student.getGpa1() +
                         "\n");
             }
             bw.close();
@@ -39,7 +39,7 @@ public class StudentWRFile {
     public static List<Student> readFile() {
         List<Student> studentList = new ArrayList<>();
         try {
-            File infile = new File("src\\Data\\student.csv");
+            File infile = new File("src\\data\\student.csv");
             if (!infile.exists()) {
                 writeFile(studentList);
             }
@@ -48,7 +48,7 @@ public class StudentWRFile {
             BufferedReader br = new BufferedReader(fr);
 
             String line;
-            String splitBy = ", ";
+            String splitBy = ";";
             while ((line = br.readLine()) != null) {
                 String[] student = line.split(splitBy);
                 Student student1 = new Student();
