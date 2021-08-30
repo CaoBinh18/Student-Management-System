@@ -1,6 +1,8 @@
 package model;
 
-public class Subject extends Student{
+public class Subject {
+    private String name;
+    private long id;
     private double ktBaiCu;
     private double kt15p;
     private double kt45p;
@@ -10,8 +12,9 @@ public class Subject extends Student{
     public Subject() {
     }
 
-    public Subject(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk) {
-        super(stt, name);
+    public Subject(long id, String name, double ktBaiCu, double kt15p, double kt45p, double kthk) {
+        this.id = id;
+        this.name = name;
         this.ktBaiCu = ktBaiCu;
         this.kt15p = kt15p;
         this.kt45p = kt45p;
@@ -19,8 +22,9 @@ public class Subject extends Student{
 
     }
 
-    public Subject(int stt, String name, double ktBaiCu, double kt15p, double kt45p, double kthk, double gpa) {
-        super(stt, name);
+    public Subject(long id, String name, double ktBaiCu, double kt15p, double kt45p, double kthk, double gpa) {
+        this.id = id;
+        this.name = name;
         this.ktBaiCu = ktBaiCu;
         this.kt15p = kt15p;
         this.kt45p = kt45p;
@@ -28,9 +32,21 @@ public class Subject extends Student{
         this.gpa = gpa;
     }
 
-//    public Subject(int stt, String name) {
-//        super(stt, name);
-//    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public double getKtBaiCu() {
         return ktBaiCu;
@@ -73,15 +89,12 @@ public class Subject extends Student{
     }
 
     public void display() {
-        Subject subject = new Subject(super.getStt(), super.getName(), ktBaiCu, kt15p, kt45p, kthk, gpa);
-
-        System.out.printf("%5d | ", subject.getStt());
-        System.out.printf("%20s | ", subject.getName());
-        System.out.printf("%10.2f | ", subject.getKtBaiCu());
-        System.out.printf("%10.2f | ", subject.getKt15p());
-        System.out.printf("%10.2f | ", subject.getKt45p());
-        System.out.printf("%10.2f | ", subject.getKthk());
-        System.out.printf("%10.2f%n", subject.getGpa());
-
+        System.out.printf("%15d | ", id);
+        System.out.printf("%20s | ", name);
+        System.out.printf("%10.2f | ", ktBaiCu);
+        System.out.printf("%10.2f | ", kt15p);
+        System.out.printf("%10.2f | ", kt45p);
+        System.out.printf("%10.2f | ", kthk);
+        System.out.printf("%10.2f%n", gpa);
     }
 }

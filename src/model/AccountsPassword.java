@@ -1,27 +1,27 @@
 package model;
 
-public class AcountPassword {
-    private String acount;
+public class AccountsPassword {
+    private String account;
     private String password;
 
-    public AcountPassword() {
+    public AccountsPassword() {
     }
 
-    public AcountPassword(String acount, String password) {
-        this.acount = acount;
+    public AccountsPassword(String account, String password) {
+        this.account = account;
         this.password = password;
     }
 
-    public AcountPassword(String pass) {
+    public AccountsPassword(String pass) {
         this.password = pass;
     }
 
-    public String getAcount() {
-        return acount;
+    public String getAccount() {
+        return account;
     }
 
-    public void setAcount(String acount) {
-        this.acount = acount;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPassword() {

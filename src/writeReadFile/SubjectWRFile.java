@@ -6,21 +6,21 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BiologyWRFile {
-    public static void writeFileBiology(List<Subject> biologyList, String fileName) {
+public class SubjectWRFile {
+    public static void writeFileSubject(List<Subject> subjectList, String fileName) {
         try {
-            File infile = new File("src\\Data\\"+fileName);
+            File infile = new File("src\\Data\\" + fileName);
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            for (Subject biology : biologyList) {
-                bw.write(biology.getStt() +
-                        ";" + biology.getName() +
-                        ";" + biology.getKtBaiCu() +
-                        ";" + biology.getKt15p() +
-                        ";" + biology.getKt45p() +
-                        ";" + biology.getKthk() +
-                        ";" + biology.getGpa() +
+            for (Subject subject : subjectList) {
+                bw.write(subject.getId() +
+                        ";" + subject.getName() +
+                        ";" + subject.getKtBaiCu() +
+                        ";" + subject.getKt15p() +
+                        ";" + subject.getKt45p() +
+                        ";" + subject.getKthk() +
+                        ";" + subject.getGpa() +
                         "\n");
             }
             bw.close();
@@ -30,12 +30,12 @@ public class BiologyWRFile {
         }
     }
 
-    public static List<Subject> readFileBiology(String fileName) {
-        List<Subject> biologyList = new ArrayList<>();
+    public static List<Subject> readFileSubject(String fileName) {
+        List<Subject> subjectList = new ArrayList<>();
         try {
-            File file = new File("src\\Data\\"+fileName);
+            File file = new File("src\\Data\\" + fileName);
             if (!file.exists()) {
-             return   biologyList;
+                return subjectList;
             }
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
@@ -43,20 +43,20 @@ public class BiologyWRFile {
             String line;
             String splitBy = ";";
             while ((line = br.readLine()) != null) {
-                String[] biology = line.split(splitBy);
-                Subject biology1 = new Subject();
-                biology1.setStt(Integer.parseInt(biology[0]));
-                biology1.setName(biology[1]);
-                biology1.setKtBaiCu(Double.parseDouble(biology[2]));
-                biology1.setKt15p(Double.parseDouble(biology[3]));
-                biology1.setKt45p(Double.parseDouble(biology[4]));
-                biology1.setKthk(Double.parseDouble(biology[5]));
-                biology1.setGpa(Double.parseDouble(biology[6]));
-                biologyList.add(biology1);
+                String[] subject = line.split(splitBy);
+                Subject subject1 = new Subject();
+                subject1.setId(Long.parseLong(subject[0]));
+                subject1.setName(subject[1]);
+                subject1.setKtBaiCu(Double.parseDouble(subject[2]));
+                subject1.setKt15p(Double.parseDouble(subject[3]));
+                subject1.setKt45p(Double.parseDouble(subject[4]));
+                subject1.setKthk(Double.parseDouble(subject[5]));
+                subject1.setGpa(Double.parseDouble(subject[6]));
+                subjectList.add(subject1);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return biologyList;
+        return subjectList;
     }
 }
