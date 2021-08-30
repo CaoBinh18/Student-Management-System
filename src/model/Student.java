@@ -5,7 +5,7 @@ public class Student {
     private String name;
     private String birthday;
     private String address;
-    private double physicScore, chemistryScore, mathScore, biologyScore, gpa1;
+    private double physicScore, chemistryScore, mathScore, biologyScore, gpa1 = -1;
 
     public Student() {
     }
@@ -120,16 +120,16 @@ public class Student {
         System.out.printf("%10.2f%n", student.getGpa1());
     }
 
-    @Override
-    public String toString() {
-        return "%5d | " + getStt() +
-                "%20s | " + getName() +
-                "%10s | " + getBirthday() +
-                "%30s | " + getBirthday() +
-                "%10s | " + getMathScore() +
-                "%10s | " + getChemistryScore() +
-                "%10s | " + getBiologyScore() +
-                "%10s | " + getPhysicScore() +
-                "%10s%n" + getGpa1();
-    }
+//    @Override
+//    public String toString() {
+//        return "%5d | " + getStt() +
+//                "%20s | " + getName() +
+//                "%10s | " + getBirthday() +
+//                "%30s | " + getBirthday() +
+//                "%10s | " + getMathScore() +
+//                "%10s | " + getChemistryScore() +
+//                "%10s | " + getBiologyScore() +
+//                "%10s | " + getPhysicScore() +
+//                "%10s%n" + getGpa1();
+//    }
 }

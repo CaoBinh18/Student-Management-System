@@ -1,9 +1,6 @@
 package presentation;
 
-import service.EditScore;
-import service.ScoreStudent;
-import service.ShowScore;
-import service.StudentManager;
+import service.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -151,7 +148,7 @@ public class Main {
         } while (true);
     }
 
-    static void showMenu() {
+    public static void showMenu() {
         System.out.println("\n============MENU============");
         System.out.println("1. Xem danh sách học viên");
         System.out.println("2. Thêm học viên");

@@ -1,6 +1,7 @@
 package service;
 
-import WriteReadFile.*;
+import presentation.Main;
+import writeReadFile.*;
 import model.Subject;
 import model.Student;
 
@@ -25,12 +26,10 @@ public class StudentManager {
     }
 
     public static void add() {
-        studentsList = StudentWRFile.readFile();
-        System.out.print("Số học sinh cần thêm (1 đến 10): ");
-        try {
-            int size = Integer.parseInt(sc.nextLine());
-
-            for (int i = 0; i < size; i++) {
+        String check = "";
+        do {
+            do {
+                studentsList = StudentWRFile.readFile();
                 int stt = (studentsList.size() > 0) ? (studentsList.size() + 1) : 1;
                 System.out.println("Stt: " + stt);
                 System.out.println("Tên học sinh thứ: " + stt);
@@ -39,14 +38,15 @@ public class StudentManager {
                 String address = inputAddress();
 
                 Student student = new Student(stt, name, birthday, address);
-
                 studentsList.add(student);
                 StudentWRFile.writeFile(studentsList);
+                System.out.print("Nhập tiếp(Y/N): ");
+                check = new Scanner(System.in).nextLine();
+            } while (!Regex.checkRegex(check, "([Y|N])"));
+            if (check.equals("N")) {
+                Main.showMenu();
             }
-
-        } catch (NumberFormatException e) {
-            System.out.println("Nhập sai. Vui lòng nhập lại theo Menu!!");
-        }
+        } while (check.equals("Y"));
     }
 
     public static void edit() {
@@ -117,10 +117,6 @@ public class StudentManager {
         try {
             int stt = Integer.parseInt(sc.nextLine());
             studentsList.remove(stt - 1);
-            mathList.remove(stt - 1);
-            chemistryList.remove(stt - 1);
-            biologyList.remove(stt -1);
-            physicList.remove(stt - 1);
 
             for (Student student : studentsList) {
                 if (student.getStt() > stt - 1) {
@@ -128,11 +124,15 @@ public class StudentManager {
                 }
             }
 
+            mathList.remove(stt - 1);
+
             for (Subject math : mathList) {
                 if (math.getStt() > stt - 1) {
                     math.setStt(math.getStt() - 1);
                 }
             }
+
+            chemistryList.remove(stt - 1);
 
             for (Subject chemistry : chemistryList) {
                 if (chemistry.getStt() > stt - 1) {
@@ -140,17 +140,22 @@ public class StudentManager {
                 }
             }
 
+            biologyList.remove(stt - 1);
+
             for (Subject biology : biologyList) {
                 if (biology.getStt() > stt - 1) {
                     biology.setStt(biology.getStt() - 1);
                 }
             }
 
+            physicList.remove(stt - 1);
+
             for (Subject physic : physicList) {
                 if (physic.getStt() > stt - 1) {
                     physic.setStt(physic.getStt() - 1);
                 }
             }
+
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -162,17 +167,14 @@ public class StudentManager {
     }
 
     public static String inputName() {
-        String name;
-        System.out.print("Tên học sinh: ");
-        while (true) {
-            try {
-                name = new Scanner(System.in).nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Không hợp lệ!!!");
-            }
+        System.out.print("Tên học sinh(Viết hoa chữ cái đầu): ");
+        String name = sc.nextLine();
+        while (checkName(name)) {
+            System.out.println("Nhập tên không hợp lệ!!!");
+            System.out.print("Tên học sinh: ");
+            name = sc.nextLine();
         }
-        return name;
+        return name.trim();
     }
 
     public static String inputBirthday() {
@@ -197,8 +199,6 @@ public class StudentManager {
                 System.out.println("Không hợp lệ!!!");
             }
         }
-        return address;
+        return address.trim();
     }
-
-
 }

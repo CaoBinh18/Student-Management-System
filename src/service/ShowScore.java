@@ -1,7 +1,6 @@
 package service;
 
-import WriteReadFile.*;
-import model.Physic;
+import writeReadFile.*;
 import model.Subject;
 import model.Student;
 

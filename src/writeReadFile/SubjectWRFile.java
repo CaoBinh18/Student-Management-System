@@ -1,4 +1,4 @@
-package WriteReadFile;
+package writeReadFile;
 
 import model.Subject;
 
@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BiologyWRFile {
-    public static void writeFileBiology(List<Subject> biologyList) {
+    public static void writeFileBiology(List<Subject> biologyList, String fileName) {
         try {
-            File infile = new File("src\\Data\\Biology.csv");
+            File infile = new File("src\\Data\\"+fileName);
             FileWriter fw = new FileWriter(infile);
             BufferedWriter bw = new BufferedWriter(fw);
 
@@ -30,14 +30,14 @@ public class BiologyWRFile {
         }
     }
 
-    public static List<Subject> readFileBiology() {
+    public static List<Subject> readFileBiology(String fileName) {
         List<Subject> biologyList = new ArrayList<>();
         try {
-            File infile = new File("src\\Data\\Biology.csv");
-            if (!infile.exists()) {
-                writeFileBiology(biologyList);
+            File file = new File("src\\Data\\"+fileName);
+            if (!file.exists()) {
+             return   biologyList;
             }
-            FileReader fr = new FileReader(infile);
+            FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
             String line;

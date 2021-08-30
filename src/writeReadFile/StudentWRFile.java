@@ -1,4 +1,4 @@
-package WriteReadFile;
+package writeReadFile;
 
 import model.Student;
 

@@ -1,6 +1,6 @@
 package service;
 
-import WriteReadFile.*;
+import writeReadFile.*;
 import model.Student;
 import model.Subject;
 
@@ -89,7 +89,6 @@ public class EditScore {
         } catch (NumberFormatException e) {
             System.out.println("Nhập sai: ");
         }
-//        MathWRFile.writeFileMath(mathList);
     }
 
     public static void editBiologyScore() {
@@ -127,7 +126,6 @@ public class EditScore {
         } catch (NumberFormatException e) {
             System.out.println("Nhập sai: ");
         }
-//        MathWRFile.writeFileMath(mathList);
     }
 
     public static void editPhysicScore() {
