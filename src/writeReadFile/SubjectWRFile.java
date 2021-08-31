@@ -21,6 +21,7 @@ public class SubjectWRFile {
                         ";" + subject.getKt45p() +
                         ";" + subject.getKthk() +
                         ";" + subject.getGpa() +
+                        ";" + subject.isDelete() +
                         "\n");
             }
             bw.close();
@@ -52,6 +53,7 @@ public class SubjectWRFile {
                 subject1.setKt45p(Double.parseDouble(subject[4]));
                 subject1.setKthk(Double.parseDouble(subject[5]));
                 subject1.setGpa(Double.parseDouble(subject[6]));
+                subject1.setDelete(Boolean.parseBoolean(subject[7]));
                 subjectList.add(subject1);
             }
         } catch (IOException e) {

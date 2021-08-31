@@ -6,14 +6,16 @@ import java.util.regex.Pattern;
 
 public class Regex {
     public static boolean checkDateTime(String dayTime) {
-        String regex = "([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)(((1)(9)[9][0-9])|((2)(0)[0-1][0-5]))";
+        String regex = "([0-2]?[0-9]|(3)[0-1])[-|/](((0)?[0-9])|((1)[0-2]))[-|/](((1)(9)[9][0-9])|((2)(0)[0-1][0-5]))";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(dayTime);
-        return !matcher.matches();
+        return matcher.matches();
     }
 
     public static boolean checkName(String name) {
-        String regex = "^([A-Z][a-z]+[ ]*)+$";
+//        String regex = "^([A-Z][a-z]+[ ]*)+$";
+        String regex = "^([AÀẢÃÁẠĂẰẮẲẴẶÂẤẦẨẪẬBCDĐEÈÉẺẼẸÊỀẾỂỄỆFGHIÍÌỈĨỊJKLMNOÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢPQRSTUÙÚỦŨỤƯỪỨỬỮỰVWXYÝỲỶỸỴZ]" +
+                "[aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+[ ]*)+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
@@ -28,14 +30,14 @@ public class Regex {
     }
 
     public static boolean checkPassword(String str) {
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
 
     public static boolean checkScoreStudent(String str) {
-        String regex = "^(([0-9]\\s)|([0-9]\\.\\d?\\s)|([1][0]\\s))|[4]\\.[0]?\\s";
+        String regex = "([0-9]\\.\\d)|([1][0])";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();

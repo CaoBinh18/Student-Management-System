@@ -4,6 +4,7 @@ import writeReadFile.*;
 import model.Student;
 import model.Subject;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class EditScore {
     static List<Subject> physicList;
 
     public static void editMathScore() {
+        ShowScore.showScoreMath();
         StudentManager.studentsList = StudentWRFile.readFile();
         mathList = SubjectWRFile.readFileSubject( "Maths.csv");
         List<Student> studentList = StudentManager.studentsList;
@@ -53,7 +55,6 @@ public class EditScore {
         } catch (NumberFormatException e) {
             System.out.println("Nhập sai: ");
         }
-        SubjectWRFile.writeFileSubject(mathList,"Maths.csv");
     }
 
     public static void editChemistryScore() {
@@ -169,7 +170,7 @@ public class EditScore {
         } catch (NumberFormatException e) {
             System.out.println("Nhập sai: ");
         }
-        SubjectWRFile.writeFileSubject(physicList,"Physic.csv");
+        SubjectWRFile.writeFileSubject(physicList, "Physic.csv");
 
     }
 }

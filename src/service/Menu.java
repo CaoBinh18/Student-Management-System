@@ -87,4 +87,26 @@ public class Menu {
         System.out.println("|| ============================== ||");
         System.out.print("Nhập lựa chọn: ");
     }
+
+    public static void menuEdit() {
+        System.out.println("\n|| ===========Chỉnh sửa============ ||");
+        System.out.println("|| 1. Sửa tên                       ||");
+        System.out.println("|| 2. Sửa Email                     ||");
+        System.out.println("|| 3. Sửa ngày sinh                 ||");
+        System.out.println("|| 4. Sửa địa chỉ                   ||");
+        System.out.println("|| 0. Quay lại Menu                 ||");
+        System.out.println("|| ================================ ||");
+        System.out.print("Nhập lựa chọn: ");
+    }
+
+    public static void menuAddScore() {
+        System.out.println("\n|| ===========Nhập điểm============ ||");
+        System.out.println("|| 1. Kiểm tra bài cũ               ||");
+        System.out.println("|| 2. Kiểm tra 15 phút              ||");
+        System.out.println("|| 3. Kiểm tra 45 phút              ||");
+        System.out.println("|| 4. Kiểm tra học kỳ               ||");
+        System.out.println("|| 0. Quay lại Menu                 ||");
+        System.out.println("|| ================================ ||");
+        System.out.print("Nhập lựa chọn: ");
+    }
 }

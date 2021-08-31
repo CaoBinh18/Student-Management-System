@@ -8,6 +8,7 @@ public class Subject {
     private double kt45p;
     private double kthk;
     private double gpa;
+    private boolean delete = false;
 
     public Subject() {
     }
@@ -30,6 +31,14 @@ public class Subject {
         this.kt45p = kt45p;
         this.kthk = kthk;
         this.gpa = gpa;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 
     public String getName() {
@@ -89,12 +98,44 @@ public class Subject {
     }
 
     public void display() {
-        System.out.printf("%15d | ", id);
-        System.out.printf("%20s | ", name);
-        System.out.printf("%10.2f | ", ktBaiCu);
-        System.out.printf("%10.2f | ", kt15p);
-        System.out.printf("%10.2f | ", kt45p);
-        System.out.printf("%10.2f | ", kthk);
-        System.out.printf("%10.2f%n", gpa);
+        if (!delete) {
+            System.out.printf("%15d | ", id);
+            System.out.printf("%20s | ", name);
+
+            if (ktBaiCu == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", ktBaiCu);
+            }
+
+            if (kt15p == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", kt15p);
+            }
+
+            if (kt45p == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", kt45p);
+            }
+
+            if (kthk == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", kthk);
+            }
+
+            if (gpa == 0.0) {
+                System.out.format("%10s%n", "N/A");
+
+            } else {
+                System.out.format("%10.2f%n", gpa);
+            }
+        }
     }
 }

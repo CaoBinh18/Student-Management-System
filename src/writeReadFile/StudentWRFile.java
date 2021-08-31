@@ -26,6 +26,7 @@ public class StudentWRFile {
                         ";" + student.getBiologyScore() +
                         ";" + student.getPhysicScore() +
                         ";" + student.getGpa1() +
+                        ";" + student.isDelete() +
                         "\n");
             }
             bw.close();
@@ -62,6 +63,7 @@ public class StudentWRFile {
                 student1.setBiologyScore(Double.parseDouble(student[7]));
                 student1.setPhysicScore(Double.parseDouble(student[8]));
                 student1.setGpa1(Double.parseDouble(student[9]));
+                student1.setDelete(Boolean.parseBoolean(student[10]));
                 studentList.add(student1);
 
             }
@@ -69,31 +71,5 @@ public class StudentWRFile {
             e.printStackTrace();
         }
         return studentList;
-    }
-
-    public static List<Student> readLoginFile() {
-        List<Student> LoginStudent = new ArrayList<>();
-        try {
-            File file = new File("src\\data\\LoginStudent.csv");
-            if (!file.exists()) {
-                return LoginStudent;
-            }
-
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-
-            String line;
-            String splitBy = ";";
-            while ((line = br.readLine()) != null) {
-                String[] student = line.split(splitBy);
-                Student student1 = new Student();;
-                student1.setEmail(student[0]);
-                LoginStudent.add(student1);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return LoginStudent;
     }
 }

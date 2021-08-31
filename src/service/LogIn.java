@@ -111,10 +111,22 @@ public class LogIn {
                                 }
 
                                 switch (choice3) {
-                                    case 1 -> EditScore.editMathScore();
-                                    case 2 -> EditScore.editChemistryScore();
-                                    case 3 -> EditScore.editBiologyScore();
-                                    case 4 -> EditScore.editPhysicScore();
+                                    case 1 -> {
+                                        EditScore.editMathScore();
+                                        ShowScore.showScoreMath();
+                                    }
+                                    case 2 -> {
+                                        EditScore.editChemistryScore();
+                                        ShowScore.showScoreChemistry();
+                                    }
+                                    case 3 -> {
+                                        EditScore.editBiologyScore();
+                                        ShowScore.showScoreBiology();
+                                    }
+                                    case 4 -> {
+                                        EditScore.editPhysicScore();
+                                        ShowScore.showScorePhysic();
+                                    }
                                     case 0 -> System.out.println("Quay lại Menu");
                                     default -> {
                                         System.out.println("Bạn đã nhập sai!");

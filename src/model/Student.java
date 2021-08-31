@@ -7,6 +7,7 @@ public class Student {
     private String birthday;
     private String address;
     private double physicScore, chemistryScore, mathScore, biologyScore, gpa1;
+    private boolean isDelete = false;
 
     public Student() {
     }
@@ -53,6 +54,14 @@ public class Student {
         System.out.format("%10.2f | ", student.getBiologyScore());
         System.out.format("%10.2f | ", student.getPhysicScore());
         System.out.printf("%10.2f%n", student.gpa1);
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     public long getId() {
@@ -136,16 +145,47 @@ public class Student {
     }
 
     public void displayStudent() {
-        System.out.format("%15d | ", id);
-        System.out.format("%20s | ", name);
-        System.out.format("%25s | ", email);
-        System.out.format("%10s | ", birthday);
-        System.out.format("%25s | ", address);
-        System.out.format("%10.2f | ", mathScore);
-        System.out.format("%10.2f | ", chemistryScore);
-        System.out.format("%10.2f | ", biologyScore);
-        System.out.format("%10.2f | ", physicScore);
-        System.out.printf("%10.2f%n", gpa1);
-    }
+        if (!isDelete) {
+            System.out.format("%15d | ", id);
+            System.out.format("%20s | ", name);
+            System.out.format("%25s | ", email);
+            System.out.format("%10s | ", birthday);
+            System.out.format("%25s | ", address);
+            if (mathScore == 0.0) {
+                System.out.format("%10s | ", "N/A");
 
+            } else {
+                System.out.format("%10.2f | ", mathScore);
+            }
+
+            if (chemistryScore == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", chemistryScore);
+            }
+
+            if (biologyScore == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", biologyScore);
+            }
+
+            if (physicScore == 0.0) {
+                System.out.format("%10s | ", "N/A");
+
+            } else {
+                System.out.format("%10.2f | ", physicScore);
+                ;
+            }
+
+            if (gpa1 == 0.0) {
+                System.out.format("%10s%n", "N/A");
+
+            } else {
+                System.out.printf("%10.2f%n", gpa1);
+            }
+        }
+    }
 }

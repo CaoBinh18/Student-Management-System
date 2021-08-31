@@ -3,6 +3,7 @@ package service;
 import model.*;
 import writeReadFile.*;
 
+import javax.swing.*;
 import java.util.*;
 
 import static service.Regex.*;
@@ -37,9 +38,8 @@ public class StudentManager {
         accountStudentList = AccountPasswordWRFile.readFile("accountStudent.csv");
         long id = System.currentTimeMillis();
         System.out.println("Id: " + id);
-        System.out.println("Tên học sinh thứ: " + id);
         String name = inputName();
-        System.out.println("Email: ");
+        System.out.print("Email: ");
         String email = inputEmail();
         String birthday = inputBirthday();
         String address = inputAddress();
@@ -61,22 +61,54 @@ public class StudentManager {
         biologyList = SubjectWRFile.readFileSubject("Biology.csv");
         physicList = SubjectWRFile.readFileSubject("Physic.csv");
 
+        int choice;
         System.out.print("Nhập id học viên cần sửa: ");
         try {
             long id = Long.parseLong(sc.nextLine());
-            for (int i = 0; i < studentsList.size(); i++) {
-                if (studentsList.get(i).getId() == id) {
-                    String name = inputName();
-                    System.out.println("Email: ");
-                    String email = inputEmail();
-                    String birthday = inputBirthday();
-                    String address = inputAddress();
 
-                    Student student = new Student(id, name, email, birthday, address);
-                    studentsList.get(i).setName(student.getName());
-                    studentsList.get(i).setEmail(student.getEmail());
-                    studentsList.get(i).setBirthday(student.getBirthday());
-                    studentsList.get(i).setAddress(student.getAddress());
+            for (Student student : studentsList) {
+                if (student.getId() == id) {
+
+                    do {
+                        Menu.menuEdit();
+                        while (true) {
+                            try {
+                                choice = new Scanner(System.in).nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Nhập sai");
+                            }
+                        }
+
+                        switch (choice) {
+                            case 1:
+                                String name = inputName();
+                                student.setName(name);
+                                break;
+                            case 2:
+                                System.out.print("Email: ");
+                                String email = inputEmail();
+                                student.setEmail(email);
+                                break;
+                            case 3:
+                                String birthday = inputBirthday();
+                                student.setBirthday(birthday);
+                                break;
+                            case 4:
+                                String address = inputAddress();
+                                student.setAddress(address);
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                System.out.println("Bạn đã nhập sai!");
+                                System.out.println("Hãy nhập lại: ");
+                                break;
+                        }
+                    } while (choice != 0);
+
+                    System.out.println("Thêm thành công!!!");
+                    String name = student.getName();
                     StudentWRFile.writeFile(studentsList);
                     for (Subject math : mathList) {
                         if (math.getId() == id) {
@@ -108,8 +140,10 @@ public class StudentManager {
                     break;
                 }
             }
+
         } catch (NumberFormatException e) {
-            System.out.println("ID không tồn tại. Hãy nhập lại");
+            System.out.println("ID không tồn tại!!!");
+            System.out.print("Nhập lại ID: ");
         }
     }
 
@@ -120,38 +154,38 @@ public class StudentManager {
         biologyList = SubjectWRFile.readFileSubject("Biology.csv");
         physicList = SubjectWRFile.readFileSubject("Physic.csv");
 
-        System.out.print("Nhập id của học sinh cần xóa: ");
+        System.out.print("Nhập ID của học sinh cần xóa: ");
         try {
             long id = Long.parseLong(sc.nextLine());
 
-            for (int i = 0; i < mathList.size(); i++) {
-                if (mathList.get(i).getId() == id) {
-                    mathList.remove(i);
+            for (Subject math : mathList) {
+                if (math.getId() == id) {
+                    math.setDelete(true);
                 }
             }
 
-            for (int i = 0; i < chemistryList.size(); i++) {
-                if (chemistryList.get(i).getId() == id) {
-                    chemistryList.remove(i);
+            for (Subject chemistry : chemistryList) {
+                if (chemistry.getId() == id) {
+                    chemistry.setDelete(true);
                 }
             }
 
-            for (int i = 0; i < biologyList.size(); i++) {
-                if (biologyList.get(i).getId() == id) {
-                    biologyList.remove(i);
+            for (Subject biology : biologyList) {
+                if (biology.getId() == id) {
+                    biology.setDelete(true);
 
                 }
             }
 
-            for (int i = 0; i < physicList.size(); i++) {
-                if (physicList.get(i).getId() == id) {
-                    physicList.remove(i);
+            for (Subject physic : physicList) {
+                if (physic.getId() == id) {
+                    physic.setDelete(true);
                 }
             }
 
-            for (int i = 0; i < studentsList.size(); i++) {
-                if (studentsList.get(i).getId() == id) {
-                    studentsList.remove(i);
+            for (Student student : studentsList) {
+                if (student.getId() == id) {
+                    student.setDelete(true);
                 }
             }
 
@@ -172,9 +206,9 @@ public class StudentManager {
         String nameStudent = sc.nextLine();
 
         System.out.println("Result: ");
-        for (int i = 0; i < studentsList.size(); i++) {
-            if (studentsList.get(i).getName().equalsIgnoreCase(nameStudent)){
-                Student.displayStudent(studentsList.get(i));
+        for (Student student : studentsList) {
+            if (student.getName().equalsIgnoreCase(nameStudent)) {
+                Student.displayStudent(student);
             }
         }
     }
@@ -212,11 +246,11 @@ public class StudentManager {
     }
 
     public static String inputName() {
-        System.out.print("Tên học sinh(Viết hoa chữ cái đầu): ");
+        System.out.print("Tên học sinh (Ví dụ: Cao Thanh Bình): ");
         String name = sc.nextLine();
         while (!checkName(name)) {
-            System.out.println("Nhập tên không hợp lệ!!!");
-            System.out.print("Tên học sinh: ");
+            System.out.println("Tên không hợp lệ!!!");
+            System.out.print("Tên học sinh (Ví dụ: Cao Thanh Bình): ");
             name = sc.nextLine();
         }
         return name.trim();
@@ -233,14 +267,14 @@ public class StudentManager {
     }
 
     public static String inputBirthday() {
-        System.out.print("Ngày sinh: ");
+        System.out.print("Ngày sinh (dd/mm/yyyy): ");
         String birthday = sc.nextLine();
-        while (checkDateTime(birthday)) {
+        while (!checkDateTime(birthday)) {
             System.out.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
-            System.out.print("Ngày sinh: ");
+            System.out.print("Ngày sinh (dd/mm/yyyy): ");
             birthday = sc.nextLine();
         }
-        return birthday;
+        return birthday.trim();
     }
 
     public static String inputAddress() {
