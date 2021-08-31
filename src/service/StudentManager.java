@@ -193,11 +193,29 @@ public class StudentManager {
         show(studentNameList);
     }
 
+    public static void editPassStudent() {
+        accountStudentList = AccountPasswordWRFile.readFile("accountStudent.csv");
+        System.out.print("Nhập email đăng nhập: ");
+        String useName = StudentManager.inputEmail();
+
+        for (int i = 0; i < accountStudentList.size(); i++) {
+            if (Objects.equals(accountStudentList.get(i).getAccount(), useName)) {
+                String account = accountStudentList.get(i).getAccount();
+                System.out.println("Nhập mật khẩu mới");
+                String password = Regex.inputPassword();
+                AccountsPassword accountsPassword = new AccountsPassword(account, password);
+
+                accountStudentList.get(i).setPassword(accountsPassword.getPassword());
+                AccountPasswordWRFile.writeFile(accountStudentList, "accountStudent.csv");
+            }
+        }
+    }
+
     public static String inputName() {
         System.out.print("Tên học sinh(Viết hoa chữ cái đầu): ");
         String name = sc.nextLine();
         while (!checkName(name)) {
-            System.err.println("Nhập tên không hợp lệ!!!");
+            System.out.println("Nhập tên không hợp lệ!!!");
             System.out.print("Tên học sinh: ");
             name = sc.nextLine();
         }
@@ -205,11 +223,10 @@ public class StudentManager {
     }
 
     public static String inputEmail() {
-//        System.out.println("Email: ");
         String email = sc.nextLine();
         while (!checkEmail(email)) {
-            System.err.println("Email không hợp lệ!!!");
-            System.out.println("Email: ");
+            System.out.println("Email không hợp lệ!!!");
+            System.out.print("Email: ");
             email = sc.nextLine();
         }
         return email.trim();
@@ -219,7 +236,7 @@ public class StudentManager {
         System.out.print("Ngày sinh: ");
         String birthday = sc.nextLine();
         while (checkDateTime(birthday)) {
-            System.err.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
+            System.out.println("Ngày tháng không hợp lệ. Hãy nhập lại!!!");
             System.out.print("Ngày sinh: ");
             birthday = sc.nextLine();
         }

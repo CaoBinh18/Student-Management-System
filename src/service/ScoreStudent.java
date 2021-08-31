@@ -20,7 +20,7 @@ public class ScoreStudent {
         mathList = SubjectWRFile.readFileSubject("Maths.csv");
         List<Student> studentList = StudentManager.studentsList;
 
-        System.out.println("Nhập ID học sinh: ");
+        System.out.print("Nhập ID học sinh: ");
         try {
             long id = Long.parseLong(sc.nextLine());
 
@@ -58,7 +58,7 @@ public class ScoreStudent {
         chemistryList = SubjectWRFile.readFileSubject("Chemistrys.csv");
         List<Student> studentList = StudentManager.studentsList;
 
-        System.out.println("Nhập ID học sinh: ");
+        System.out.print("Nhập ID học sinh: ");
         try {
             long id = Long.parseLong(sc.nextLine());
 
@@ -96,7 +96,7 @@ public class ScoreStudent {
         biologyList = SubjectWRFile.readFileSubject("Biology.csv");
         List<Student> studentList = StudentManager.studentsList;
 
-        System.out.println("Nhập ID học sinh: ");
+        System.out.print("Nhập ID học sinh: ");
         try {
             long id = Long.parseLong(sc.nextLine());
             for (int i = 0; i < studentList.size(); i++) {
@@ -132,7 +132,7 @@ public class ScoreStudent {
         physicList = SubjectWRFile.readFileSubject("Physic.csv");
         List<Student> studentList = StudentManager.studentsList;
 
-        System.out.println("Nhập ID học sinh: ");
+        System.out.print("Nhập ID học sinh: ");
         try {
             long id = Long.parseLong(sc.nextLine());
             for (int i = 0; i < studentList.size(); i++) {

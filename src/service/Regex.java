@@ -35,7 +35,7 @@ public class Regex {
     }
 
     public static boolean checkScoreStudent(String str) {
-        String regex = "^\\d\\.\\d|[10\\.0]$";
+        String regex = "^(([0-9]\\s)|([0-9]\\.\\d?\\s)|([1][0]\\s))|[4]\\.[0]?\\s";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
@@ -51,7 +51,6 @@ public class Regex {
 
     public static String inputPassword() {
         String password = new Scanner(System.in).nextLine();
-        ;
         while (!checkPassword(password)) {
             System.out.println("Mật khẩu không hợp lệ!!!");
             System.out.print("Mật khẩu: ");

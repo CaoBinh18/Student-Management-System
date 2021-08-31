@@ -5,6 +5,7 @@ import writeReadFile.AccountPasswordWRFile;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class LogIn {
@@ -72,23 +73,27 @@ public class LogIn {
                                     case 1 -> {
                                         StudentManager.show();
                                         ScoreStudent.addMathScore();
+                                        ShowScore.showScoreMath();
                                     }
                                     case 2 -> {
                                         StudentManager.show();
                                         ScoreStudent.addChemistryScore();
+                                        ShowScore.showScoreChemistry();
                                     }
                                     case 3 -> {
                                         StudentManager.show();
                                         ScoreStudent.addBiologyScore();
+                                        ShowScore.showScoreBiology();
                                     }
                                     case 4 -> {
                                         StudentManager.show();
                                         ScoreStudent.addPhysicScore();
+                                        ShowScore.showScorePhysic();
                                     }
                                     case 0 -> System.out.println("Quay lại Menu");
                                     default -> {
-                                        System.err.println("Bạn đã nhập sai!");
-                                        System.err.println("Hãy nhập lại: ");
+                                        System.out.println("Bạn đã nhập sai!");
+                                        System.out.println("Hãy nhập lại: ");
                                     }
                                 }
                             } while (choice2 != 0);
@@ -112,8 +117,8 @@ public class LogIn {
                                     case 4 -> EditScore.editPhysicScore();
                                     case 0 -> System.out.println("Quay lại Menu");
                                     default -> {
-                                        System.err.println("Bạn đã nhập sai!");
-                                        System.err.println("Hãy nhập lại: ");
+                                        System.out.println("Bạn đã nhập sai!");
+                                        System.out.println("Hãy nhập lại: ");
                                     }
                                 }
                             } while (choice3 != 0);
@@ -141,7 +146,7 @@ public class LogIn {
                                         System.out.println("Quay lại Menu");
                                         break;
                                     default:
-                                        System.err.println("Bạn đã nhập sai!");
+                                        System.out.println("Bạn đã nhập sai!");
                                         System.out.println("Hãy nhập lại: ");
                                         break;
                                 }
@@ -167,7 +172,7 @@ public class LogIn {
                                     case 4 -> ShowScore.showScorePhysic();
                                     case 0 -> System.out.println("Quay lại Menu");
                                     default -> {
-                                        System.err.println("Bạn đã nhập sai!");
+                                        System.out.println("Bạn đã nhập sai!");
                                         System.out.println("Hãy nhập lại: ");
                                     }
                                 }
@@ -177,14 +182,14 @@ public class LogIn {
                             System.out.println("Quay lại Menu Login");
                             break;
                         default:
-                            System.err.println("Bạn đã nhập sai!");
-                            System.err.println("Hãy nhập lại: ");
+                            System.out.println("Bạn đã nhập sai!");
+                            System.out.println("Hãy nhập lại: ");
                             break;
                     }
                 } while (choice1 != 0);
                 return;
             } else {
-                System.err.println("Sai tài khoản hoặc mật khẩu!!!");
+                System.out.println("Sai tài khoản hoặc mật khẩu!!!");
                 return;
             }
         }
@@ -237,7 +242,7 @@ public class LogIn {
                                     case 4 -> ShowScore.showScorePhysic();
                                     case 0 -> System.out.println("Quay lại Menu");
                                     default -> {
-                                        System.err.println("Bạn đã nhập sai!");
+                                        System.out.println("Bạn đã nhập sai!");
                                         System.out.println("Hãy nhập lại: ");
                                     }
                                 }
@@ -246,18 +251,21 @@ public class LogIn {
                         case 3:
                             StudentManager.findStudentName();
                             break;
+                        case 4:
+                            StudentManager.editPassStudent();
+                            break;
                         case 0:
                             System.out.println("Quay lại menu LogIn");
                             break;
                         default:
-                            System.err.println("Bạn đã nhập sai!");
+                            System.out.println("Bạn đã nhập sai!");
                             System.out.println("Hãy nhập lại: ");
                             break;
                     }
                 } while (choose != 0);
                 return;
             } else {
-                System.err.println("Sai tài khoản hoặc mật khẩu!!!");
+                System.out.println("Sai tài khoản hoặc mật khẩu!!!");
                 return;
             }
         }
@@ -288,21 +296,25 @@ public class LogIn {
                     AccountsPassword accountsPassword = new AccountsPassword(teacher, password);
                     accountTeacherList.add(accountsPassword);
                     AccountPasswordWRFile.writeFile(accountTeacherList, "accountTeacher.csv");
+                    System.out.println("Đăng kí thành công!");
                     break;
                 case 2:
                     accountTeacherList = AccountPasswordWRFile.readFile("accountTeacher.csv");
-                    System.out.print("Nhập tên: ");
+                    System.out.print("Nhập email đăng nhập: ");
                     String useName = StudentManager.inputEmail();
 
                     for (int i = 0; i < accountTeacherList.size(); i++) {
-                        if (accountTeacherList.get(i).getAccount() == useName) {
+                        if (Objects.equals(accountTeacherList.get(i).getAccount(), useName)) {
+                            String account = accountTeacherList.get(i).getAccount();
+                            System.out.print("Nhập mật khẩu mới: ");
                             String pass = Regex.inputPassword();
-                            AccountsPassword accountsPassword1 = new AccountsPassword(pass);
+                            AccountsPassword accountsPassword1 = new AccountsPassword(account, pass);
 
                             accountTeacherList.get(i).setPassword(accountsPassword1.getPassword());
                             AccountPasswordWRFile.writeFile(accountTeacherList, "accountTeacher.csv");
                         }
                     }
+                    System.out.println("Đã đổi mật khẩu!!!");
                     break;
                 case 3:
                     accountTeacherList = AccountPasswordWRFile.readFile("accountTeacher.csv");
@@ -321,7 +333,7 @@ public class LogIn {
                     System.out.println("Quay lại menu LogIn");
                     break;
                 default:
-                    System.err.println("Bạn đã nhập sai!");
+                    System.out.println("Bạn đã nhập sai!");
                     System.out.println("Hãy nhập lại: ");
                     break;
             }

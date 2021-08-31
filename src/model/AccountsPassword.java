@@ -12,10 +12,6 @@ public class AccountsPassword {
         this.password = password;
     }
 
-    public AccountsPassword(String pass) {
-        this.password = pass;
-    }
-
     public String getAccount() {
         return account;
     }
