@@ -3,7 +3,6 @@ package service;
 import model.*;
 import writeReadFile.*;
 
-import javax.swing.*;
 import java.util.*;
 
 import static service.Regex.*;
@@ -48,7 +47,7 @@ public class StudentManager {
         studentsList.add(student);
         StudentWRFile.writeFile(studentsList);
 
-        AccountsPassword accountsPassword = new AccountsPassword(student.getEmail(), "Abcd1234");
+        AccountsPassword accountsPassword = new AccountsPassword(student.getEmail(), "Abc123");
         accountStudentList.add(accountsPassword);
         AccountPasswordWRFile.writeFile(accountStudentList, "accountStudent.csv");
 
@@ -229,18 +228,20 @@ public class StudentManager {
 
     public static void editPassStudent() {
         accountStudentList = AccountPasswordWRFile.readFile("accountStudent.csv");
+
         System.out.print("Nhập email đăng nhập: ");
         String useName = StudentManager.inputEmail();
 
         for (int i = 0; i < accountStudentList.size(); i++) {
             if (Objects.equals(accountStudentList.get(i).getAccount(), useName)) {
                 String account = accountStudentList.get(i).getAccount();
-                System.out.println("Nhập mật khẩu mới");
+                System.out.print("Nhập mật khẩu mới: ");
                 String password = Regex.inputPassword();
                 AccountsPassword accountsPassword = new AccountsPassword(account, password);
 
                 accountStudentList.get(i).setPassword(accountsPassword.getPassword());
                 AccountPasswordWRFile.writeFile(accountStudentList, "accountStudent.csv");
+                System.out.println("Đã đổi mật khẩu");
             }
         }
     }

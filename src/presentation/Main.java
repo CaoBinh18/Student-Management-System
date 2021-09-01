@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int choose, choose2, choose3;
+        int choose;
 
         do {
             Menu.menuLogin();

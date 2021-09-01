@@ -2,7 +2,7 @@ package service;
 
 public class Menu {
     public static void showMenu() {
-        System.out.println("\n|| =============MENU============= ||");
+        System.out.println("|| =============MENU============= ||");
         System.out.println("|| 1. Xem danh sách học viên      ||");
         System.out.println("|| 2. Thêm học viên               ||");
         System.out.println("|| 3. Sửa thông tin học viên      ||");

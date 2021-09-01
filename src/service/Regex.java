@@ -44,7 +44,7 @@ public class Regex {
     }
 
     public static String convertInt(String str) {
-        if (str.equals("1") || str.equals("2") || str.equals("3") || str.equals("4") || str.equals("5") ||
+        if (str.equals("0") || str.equals("1") || str.equals("2") || str.equals("3") || str.equals("4") || str.equals("5") ||
                 str.equals("6") || str.equals("7") || str.equals("8") || str.equals("9") || str.equals("10")) {
             str = str + ".0";
         }

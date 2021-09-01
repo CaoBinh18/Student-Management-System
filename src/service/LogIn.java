@@ -324,9 +324,10 @@ public class LogIn {
 
                             accountTeacherList.get(i).setPassword(accountsPassword1.getPassword());
                             AccountPasswordWRFile.writeFile(accountTeacherList, "accountTeacher.csv");
+                            System.out.println("Đã đổi mật khẩu!!!");
                         }
                     }
-                    System.out.println("Đã đổi mật khẩu!!!");
+                    System.out.println("Tài khoản chưa đăng ký!!!");
                     break;
                 case 3:
                     accountTeacherList = AccountPasswordWRFile.readFile("accountTeacher.csv");
